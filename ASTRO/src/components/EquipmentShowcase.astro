@@ -1,204 +1,153 @@
 ---
-// EquipmentShowcase.astro - Interactive Gear Visuals & Spec Rows
+// EquipmentShowcase.astro - Identical Gear Stream Rows
 ---
-<section class="py-24 sm:py-32 relative z-20" id="equipment">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Section Header Badge -->
-    <div class="text-center max-w-3xl mx-auto mb-20 sm:mb-24">
-      <span class="inline-block px-4 py-1.5 rounded-full bg-sky-100 text-sky-700 text-xs sm:text-sm font-bold tracking-wider uppercase mb-3" data-i18n="sec_eyebrow">
-        Нашата Опрема
-      </span>
-      <h2 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight" data-i18n="sec_main_title">
-        Подготвени за Секој Снежен Спуст
-      </h2>
+<div class="slope-stream" id="equipment">
+  <div class="stream-container">
+
+    <div class="section-header-badge">
+      <span class="section-eyebrow" data-i18n="sec_eyebrow">Нашата Опрема</span>
+      <h2 class="section-main-title" data-i18n="sec_main_title">Подготвени за Секој Снежен Спуст</h2>
     </div>
 
-    <!-- Product Rows Container -->
-    <div class="space-y-24 sm:space-y-36">
-
-      <!-- 1. SKI EQUIPMENT ROW -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
-        <!-- Left: Image as Clean Overlay with Badges -->
-        <div class="lg:col-span-7 relative group">
-          <div class="relative">
-            <picture>
-              <source srcset="/images/section1-skier.webp" type="image/webp" />
-              <img src="/images/section1-skier.png" alt="Скијач на Пониква - Ски Надја" width="1107" height="749" class="w-full h-auto object-contain transform group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
-            </picture>
-          </div>
-
-          <!-- Floating Badges -->
-          <div class="absolute -top-3 -left-3 sm:top-4 sm:left-4 bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 animate-float">
-            <span>⛷️</span>
-            <span data-i18n="ski_badge_1">Atomic & Head Carving</span>
-          </div>
-          <div class="absolute -bottom-3 -right-3 sm:bottom-4 sm:right-4 bg-white/90 backdrop-blur-md border border-slate-200 text-slate-900 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2">
-            <span>🛡️</span>
-            <span data-i18n="ski_badge_2">Комплет со шлем и стапчиња</span>
-          </div>
+    <!-- 1. SKI EQUIPMENT SHOWCASE ROW: Professional carving & all-mountain ski sets -->
+    <div class="gear-showcase-row">
+      <div class="gear-visual">
+        <div class="image-stage-backdrop"></div>
+        <div class="gear-image-wrapper">
+          <picture>
+            <source srcset="/images/section1-skier.webp" type="image/webp">
+            <img src="/images/section1-skier.png" alt="Скијач на Пониква - Ски Надја" width="1107" height="749"
+              loading="lazy">
+          </picture>
         </div>
-
-        <!-- Right: Content & Specs -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-sky-100 text-sky-800 font-bold text-xs uppercase" data-i18n="ski_tag">
-            Ски Комплети
-          </div>
-          <h3 class="font-display font-black text-2xl sm:text-4xl text-slate-900 leading-tight" data-i18n="ski_title">
-            Професионална Ски Опрема
-          </h3>
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed" data-i18n="ski_desc">
-            Скии, стапчиња, удобни панцири, ракавици и заштитни одела — прецизно нагодени на вашата висина, тежина и скијачко ниво. Ве чекаат подготвени на стартот на патеката!
-          </p>
-
-          <!-- Spec Pills -->
-          <div class="flex flex-wrap gap-2.5 pt-2">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🎿</span> <span data-i18n="ski_spec_1">Carving & All-Mountain</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>👢</span> <span data-i18n="ski_spec_2">Броеви: 25 – 48</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🪖</span> <span data-i18n="ski_spec_3">Заштитни Шлемови</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>✨</span> <span data-i18n="ski_spec_4">Свежо Восочени Скии</span>
-            </span>
-          </div>
-
-          <!-- Buttons -->
-          <div class="flex items-center gap-4 pt-4">
-            <a href="#contact" class="select-gear-btn inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5" data-gear="Ski equipment">
-              <span data-i18n="btn_rent_ski">Резервирај Ски Комплет</span>
-            </a>
-            <a href="tel:+38970000000" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm sm:text-base px-5 py-3.5 rounded-2xl border border-slate-200 transition-all duration-200">
-              <span>📞</span>
-              <span data-i18n="btn_call_us">Јави се</span>
-            </a>
-          </div>
+        <!-- Floating Spec Badges -->
+        <div class="floating-card-badge badge-top-left">
+          <span>⛷️</span>
+          <span data-i18n="ski_badge_1">Atomic & Head Carving</span>
         </div>
-
+        <div class="floating-card-badge badge-bottom-right">
+          <span>🛡️</span>
+          <span data-i18n="ski_badge_2">Комплет со шлем и стапчиња</span>
+        </div>
       </div>
 
-      <!-- 2. SNOWBOARD EQUIPMENT ROW (REVERSED) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
-        <!-- Left: Content & Specs (on desktop) -->
-        <div class="lg:col-span-5 space-y-6 order-2 lg:order-1">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-cyan-100 text-cyan-800 font-bold text-xs uppercase" data-i18n="board_tag">
-            Сноуборд Забава
-          </div>
-          <h3 class="font-display font-black text-2xl sm:text-4xl text-slate-900 leading-tight" data-i18n="board_title">
-            Сноуборд за Чист Адреналин
-          </h3>
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed" data-i18n="board_desc">
-            Врвни даски за сноуборд, квалитетни меки чизми со брзо стегање, заштитни шлемови и очила. Од вашите први свиоци до брзи карвинг спустови на свеж снег!
-          </p>
-
-          <!-- Spec Pills -->
-          <div class="flex flex-wrap gap-2.5 pt-2">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🏂</span> <span data-i18n="board_spec_1">Freeride & All-Mountain</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🥾</span> <span data-i18n="board_spec_2">Броеви: 35 – 47</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🔄</span> <span data-i18n="board_spec_3">Регулирање на аглите (Stance)</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🧤</span> <span data-i18n="board_spec_4">Топли Ракавици & Заштита</span>
-            </span>
-          </div>
-
-          <!-- Buttons -->
-          <div class="flex items-center gap-4 pt-4">
-            <a href="#contact" class="select-gear-btn inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5" data-gear="Snowboard equipment">
-              <span data-i18n="btn_rent_board">Резервирај Сноуборд</span>
-            </a>
-            <a href="https://wa.me/38970000000" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-sm sm:text-base px-5 py-3.5 rounded-2xl border border-emerald-200 transition-all duration-200">
-              <span>💬</span>
-              <span>WhatsApp</span>
-            </a>
-          </div>
+      <div class="gear-content">
+        <div class="gear-tag" data-i18n="ski_tag">Ски Комплети</div>
+        <h3 class="gear-title" data-i18n="ski_title">Професионална Ски Опрема</h3>
+        <p class="gear-desc" data-i18n="ski_desc">
+          Скии, стапчиња, удобни панцири, ракавици и заштитни одела — прецизно нагодени на вашата висина, тежина и
+          скијачко ниво. Ве чекаат подготвени на стартот на патеката!
+        </p>
+        <div class="spec-pills">
+          <span class="spec-pill"><span>🎿</span> <span data-i18n="ski_spec_1">Carving & All-Mountain</span></span>
+          <span class="spec-pill"><span>👢</span> <span data-i18n="ski_spec_2">Броеви: 25 – 48</span></span>
+          <span class="spec-pill"><span>🪖</span> <span data-i18n="ski_spec_3">Заштитни Шлемови</span></span>
+          <span class="spec-pill"><span>✨</span> <span data-i18n="ski_spec_4">Свежо Восочени Скии</span></span>
         </div>
-
-        <!-- Right: Image as Clean Overlay with Badges -->
-        <div class="lg:col-span-7 relative group order-1 lg:order-2">
-          <div class="relative">
-            <picture>
-              <source srcset="/images/section2-snowboarder.webp" type="image/webp" />
-              <img src="/images/section2-snowboarder.png" alt="Сноубордер на Пониква - Ски Надја" width="1247" height="919" class="w-full h-auto object-contain transform group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
-            </picture>
-          </div>
-
-          <!-- Floating Badges -->
-          <div class="absolute -top-3 -right-3 sm:top-4 sm:right-4 bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 animate-float">
-            <span>🏂</span>
-            <span data-i18n="board_badge_1">Nitro & Burton Boards</span>
-          </div>
-          <div class="absolute -bottom-3 -left-3 sm:bottom-4 sm:left-4 bg-white/90 backdrop-blur-md border border-slate-200 text-slate-900 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2">
-            <span>❄️</span>
-            <span data-i18n="board_badge_2">За почетници и напредни</span>
-          </div>
+        <div class="btn-wrap">
+          <a href="#contact" class="btn-primary select-gear-btn" data-gear="Ski equipment">
+            <span data-i18n="btn_rent_ski">Резервирај Ски Комплет</span>
+          </a>
+          <a href="tel:+38970000000" class="btn-secondary">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span data-i18n="btn_call_us">Јави се</span>
+          </a>
         </div>
+      </div>
+    </div>
 
+    <!-- 2. SNOWBOARD EQUIPMENT SHOWCASE ROW: Freeride/All-Mountain snowboards and soft boots (Reversed Layout) -->
+    <div class="gear-showcase-row reversed">
+      <div class="gear-visual">
+        <div class="image-stage-backdrop"></div>
+        <div class="gear-image-wrapper">
+          <picture>
+            <source srcset="/images/section2-snowboarder.webp" type="image/webp">
+            <img src="/images/section2-snowboarder.png" alt="Сноубордер на Пониква - Ски Надја" width="1247"
+              height="919" loading="lazy">
+          </picture>
+        </div>
+        <!-- Floating Badges -->
+        <div class="floating-card-badge badge-top-left">
+          <span>🏂</span>
+          <span data-i18n="board_badge_1">Nitro & Burton Boards</span>
+        </div>
+        <div class="floating-card-badge badge-bottom-right">
+          <span>❄️</span>
+          <span data-i18n="board_badge_2">За почетници и напредни</span>
+        </div>
       </div>
 
-      <!-- 3. KIDS & FAMILY SLEDGES ROW -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
-        <!-- Left: Image as Clean Overlay -->
-        <div class="lg:col-span-7 relative group">
-          <div class="relative">
-            <picture>
-              <source srcset="/images/section3-kids.webp" type="image/webp" />
-              <img src="/images/section3-kids.png" alt="Детски санки и опрема на Пониква - Ски Надја" width="1408" height="785" class="w-full h-auto object-contain transform group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
-            </picture>
-          </div>
+      <div class="gear-content">
+        <div class="gear-tag" data-i18n="board_tag">Сноуборд Забава</div>
+        <h3 class="gear-title" data-i18n="board_title">Сноуборд за Чист Адреналин</h3>
+        <p class="gear-desc" data-i18n="board_desc">
+          Врвни даски за сноуборд, квалитетни меки чизми со брзо стегање, заштитни шлемови и очила. Од вашите први
+          свиоци до брзи карвинг спустови на свеж снег!
+        </p>
+        <div class="spec-pills">
+          <span class="spec-pill"><span>🏂</span> <span data-i18n="board_spec_1">Freeride &
+              All-Mountain</span></span>
+          <span class="spec-pill"><span>🥾</span> <span data-i18n="board_spec_2">Броеви: 35 – 47</span></span>
+          <span class="spec-pill"><span>🔄</span> <span data-i18n="board_spec_3">Регулирање на аглите
+              (Stance)</span></span>
+          <span class="spec-pill"><span>🧤</span> <span data-i18n="board_spec_4">Топли Ракавици &
+              Заштита</span></span>
         </div>
-
-        <!-- Right: Content -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-100 text-amber-800 font-bold text-xs uppercase" data-i18n="kids_tag">
-            За Семејства & Најмладите
-          </div>
-          <h3 class="font-display font-black text-2xl sm:text-4xl text-slate-900 leading-tight" data-i18n="kids_title">
-            За Најмладите и Најхрабрите
-          </h3>
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed" data-i18n="kids_desc">
-            Санки за еден или двајца, детска ски опрема во минијатурни големини и топла заштитна облека за сигурна и насмеана семејна забава на снегот.
-          </p>
-
-          <!-- Spec Pills -->
-          <div class="flex flex-wrap gap-2.5 pt-2">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🛷</span> <span data-i18n="kids_spec_1">Единечни и Двојни Санки</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🎿</span> <span data-i18n="kids_spec_2">Детски Скии (од 70 cm)</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>🧥</span> <span data-i18n="kids_spec_3">Топли Скафандери (2 – 14 год.)</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700">
-              <span>⛑️</span> <span data-i18n="kids_spec_4">Детски Шлемови со Сертификат</span>
-            </span>
-          </div>
-
-          <!-- Buttons -->
-          <div class="pt-4">
-            <a href="#contact" class="select-gear-btn inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5" data-gear="Sledges and kids' gear">
-              <span data-i18n="btn_rent_kids">Резервирај Детска Опрема / Санки</span>
-            </a>
-          </div>
+        <div class="btn-wrap">
+          <a href="#contact" class="btn-primary select-gear-btn" data-gear="Snowboard equipment">
+            <span data-i18n="btn_rent_board">Резервирај Сноуборд</span>
+          </a>
+          <a href="https://wa.me/38970000000" target="_blank" rel="noopener" class="btn-secondary">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2" />
+            </svg>
+            <span>WhatsApp</span>
+          </a>
         </div>
+      </div>
+    </div>
 
+    <!-- 3. KIDS & FAMILY SLEDGES SHOWCASE ROW: Sledges, kids' skis, warm winter suits (Centered Layout) -->
+    <div class="gear-showcase-row centered-layout">
+      <div class="gear-content">
+        <div class="gear-tag" data-i18n="kids_tag">За Семејства & Најмладите</div>
+        <h3 class="gear-title" data-i18n="kids_title">За Најмладите и Најхрабрите</h3>
+        <p class="gear-desc" data-i18n="kids_desc">
+          Санки за еден или двајца, детска ски опрема во минијатурни големини и топла заштитна облека за сигурна и
+          насмеана семејна забава на снегот.
+        </p>
+        <div class="spec-pills">
+          <span class="spec-pill"><span>🛷</span> <span data-i18n="kids_spec_1">Единечни и Двојни
+              Санки</span></span>
+          <span class="spec-pill"><span>🎿</span> <span data-i18n="kids_spec_2">Детски Скии (од 70 cm)</span></span>
+          <span class="spec-pill"><span>🧥</span> <span data-i18n="kids_spec_3">Топли Скафандери (2 – 14
+              год.)</span></span>
+          <span class="spec-pill"><span>⛑️</span> <span data-i18n="kids_spec_4">Детски Шлемови со
+              Сертификат</span></span>
+        </div>
+        <div class="btn-wrap">
+          <a href="#contact" class="btn-primary select-gear-btn" data-gear="Sledges and kids' gear">
+            <span data-i18n="btn_rent_kids">Резервирај Детска Опрема / Санки</span>
+          </a>
+        </div>
       </div>
 
+      <div class="gear-visual">
+        <div class="image-stage-backdrop"></div>
+        <div class="gear-image-wrapper">
+          <picture>
+            <source srcset="/images/section3-kids.webp" type="image/webp">
+            <img src="/images/section3-kids.png" alt="Детски санки и опрема на Пониква - Ски Надја" width="1408"
+              height="785" loading="lazy">
+          </picture>
+        </div>
+      </div>
     </div>
 
   </div>
-</section>
+</div>

@@ -35,7 +35,7 @@ const {
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="bg-[#f5f8fc] text-[#0f172a] antialiased selection:bg-sky-500 selection:text-white">
+  <body>
     <slot />
 
     <!-- Global Client Script for i18n & Phone Router -->
@@ -82,13 +82,8 @@ const {
         const btnMk = document.getElementById("btn-mk");
         const btnEn = document.getElementById("btn-en");
         if (btnMk && btnEn) {
-          btnMk.classList.toggle("bg-sky-600", lang === "mk");
-          btnMk.classList.toggle("text-white", lang === "mk");
-          btnMk.classList.toggle("text-slate-600", lang !== "mk");
-
-          btnEn.classList.toggle("bg-sky-600", lang === "en");
-          btnEn.classList.toggle("text-white", lang === "en");
-          btnEn.classList.toggle("text-slate-600", lang !== "en");
+          btnMk.classList.toggle("active", lang === "mk");
+          btnEn.classList.toggle("active", lang === "en");
         }
 
         // Trigger WhatsApp live preview recalculation in selected language

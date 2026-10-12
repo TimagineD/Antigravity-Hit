@@ -1,183 +1,139 @@
 ---
-// Snowfall.astro - 60 FPS Canvas Snowfall Particle Engine
+// Snowfall.astro - 60 FPS Canvas Particle Snowfall & CSS Snowflake Sparks
 ---
-<canvas id="snowCanvas" class="fixed inset-0 pointer-events-none z-10 w-full h-full" aria-hidden="true"></canvas>
+<canvas id="snowfall" aria-hidden="true"></canvas>
+<div id="snow-sparks" aria-hidden="true"></div>
 
 <script>
+  let snowActive = true;
   (function () {
-    const canvas = document.getElementById("snowCanvas") as HTMLCanvasElement;
+    const canvas = document.getElementById('snowfall') as HTMLCanvasElement;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mql.matches) return;
 
-    let width = 0;
-    let height = 0;
-    let dpr = 1;
-    let flakes: Flake[] = [];
-    let raf: number | null = null;
-    let last = 0;
-    let snowActive = true;
+    let W = 0, H = 0, flakes: any[] = [], raf: number | null = null, last = performance.now(), t = 0, rzTimer: any;
 
-    interface Flake {
-      x: number;
-      y: number;
-      r: number;
-      vy: number;
-      vx: number;
-      sway: number;
-      swaySpeed: number;
-      alpha: number;
-      kind: number;
-      sprite: HTMLCanvasElement;
+    function glowSprite() {
+      const c = document.createElement('canvas'); c.width = c.height = 48;
+      const g = c.getContext('2d')!;
+      const r = g.createRadialGradient(24, 24, 0, 24, 24, 24);
+      r.addColorStop(0, 'rgba(255,255,255,1)');
+      r.addColorStop(.25, 'rgba(255,255,255,.85)');
+      r.addColorStop(.6, 'rgba(213,236,255,.3)');
+      r.addColorStop(1, 'rgba(213,236,255,0)');
+      g.fillStyle = r; g.fillRect(0, 0, 48, 48);
+      return c;
     }
 
-    function glowSprite(): HTMLCanvasElement {
-      const s = document.createElement("canvas");
-      s.width = 32;
-      s.height = 32;
-      const c = s.getContext("2d")!;
-      const g = c.createRadialGradient(16, 16, 0, 16, 16, 16);
-      g.addColorStop(0, "rgba(255,255,255,1)");
-      g.addColorStop(0.3, "rgba(224,242,254,0.85)");
-      g.addColorStop(0.7, "rgba(56,189,248,0.25)");
-      g.addColorStop(1, "rgba(56,189,248,0)");
-      c.fillStyle = g;
-      c.beginPath();
-      c.arc(16, 16, 16, 0, Math.PI * 2);
-      c.fill();
-      return s;
+    function starSprite() {
+      const c = document.createElement('canvas'); c.width = c.height = 48;
+      const g = c.getContext('2d')!;
+      g.translate(24, 24); g.lineCap = 'round';
+      g.strokeStyle = 'rgba(255,255,255,.95)';
+      g.shadowColor = 'rgba(190,226,255,.9)'; g.shadowBlur = 6;
+      g.lineWidth = 2.5; g.beginPath();
+      g.moveTo(0, -18); g.lineTo(0, 18); g.moveTo(-18, 0); g.lineTo(18, 0); g.stroke();
+      g.lineWidth = 1.5; g.beginPath();
+      g.moveTo(-7, -7); g.lineTo(7, 7); g.moveTo(7, -7); g.lineTo(-7, 7); g.stroke();
+      return c;
     }
 
-    function starSprite(): HTMLCanvasElement {
-      const s = document.createElement("canvas");
-      s.width = 24;
-      s.height = 24;
-      const c = s.getContext("2d")!;
-      c.translate(12, 12);
-      c.strokeStyle = "rgba(255,255,255,0.9)";
-      c.lineWidth = 1.4;
-      c.lineCap = "round";
-      for (let i = 0; i < 6; i++) {
-        c.beginPath();
-        c.moveTo(0, 0);
-        c.lineTo(0, 9);
-        c.stroke();
-        c.beginPath();
-        c.moveTo(0, 5);
-        c.lineTo(3, 7);
-        c.stroke();
-        c.beginPath();
-        c.moveTo(0, 5);
-        c.lineTo(-3, 7);
-        c.stroke();
-        c.rotate(Math.PI / 3);
-      }
-      return s;
-    }
+    const SPRITES = [glowSprite(), starSprite()];
+    const rand = (a: number, b: number) => a + Math.random() * (b - a);
 
-    const spriteGlow = glowSprite();
-    const spriteStar = starSprite();
-
-    function makeFlake(fromTop = false): Flake {
-      const kind = Math.random();
-      const depth = Math.random();
-      const r = 1.2 + depth * 3.8;
-      const vy = 25 + depth * 55;
-      const vx = (Math.random() - 0.5) * 12;
-      const sway = Math.random() * Math.PI * 2;
-      const swaySpeed = 0.6 + Math.random() * 1.2;
-      const alpha = 0.35 + depth * 0.55;
+    function makeFlake(fromTop: boolean) {
+      const star = Math.random() < 0.12;
       return {
-        x: Math.random() * width,
-        y: fromTop ? -10 - Math.random() * 20 : Math.random() * height,
-        r,
-        vy,
-        vx,
-        sway,
-        swaySpeed,
-        alpha,
-        kind,
-        sprite: kind > 0.88 ? spriteStar : spriteGlow,
+        x: rand(0, W),
+        y: fromTop ? rand(-40, -10) : rand(0, H),
+        r: star ? rand(1.6, 2.6) : rand(0.8, 2.2),
+        v: rand(15, 45),
+        drift: rand(-6, 6),
+        swayA: rand(8, 24),
+        swayF: rand(0.15, 0.45),
+        ph: rand(0, Math.PI * 2),
+        tw: rand(0.6, 2.2),
+        o: star ? rand(.55, .95) : rand(.3, .8),
+        sp: star ? 1 : 0
       };
     }
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     }
 
     function populate() {
-      const target = Math.min(Math.floor((width * height) / 14000), 100);
-      flakes = [];
-      for (let i = 0; i < target; i++) {
-        flakes.push(makeFlake(false));
-      }
+      const n = Math.min(140, Math.round(W * H / 12000));
+      flakes = Array.from({ length: n }, () => makeFlake(false));
     }
 
     function frame(now: number) {
-      if (!last) last = now;
-      const dt = Math.min((now - last) / 1000, 0.1);
-      last = now;
-
-      ctx.clearRect(0, 0, width, height);
-
+      if (!snowActive) return;
+      const dt = Math.min((now - last) / 1000, .05); last = now; t += dt;
+      ctx.clearRect(0, 0, W, H);
       for (let i = 0; i < flakes.length; i++) {
         const f = flakes[i];
-        f.sway += f.swaySpeed * dt;
-        const wind = Math.sin(f.sway) * 18;
-        f.y += f.vy * dt;
-        f.x += (f.vx + wind) * dt;
-
-        if (f.y > height + 20) {
-          flakes[i] = makeFlake(true);
-          continue;
-        }
-        if (f.x < -20) f.x = width + 10;
-        else if (f.x > width + 20) f.x = -10;
-
-        ctx.globalAlpha = f.alpha;
-        const size = f.r * 2.4;
-        ctx.drawImage(f.sprite, f.x - size / 2, f.y - size / 2, size, size);
+        f.y += f.v * dt;
+        f.x += (f.drift + Math.sin(t * f.swayF * 6.283 + f.ph) * f.swayA * .5) * dt;
+        if (f.y > H + 30) { flakes[i] = makeFlake(true); continue; }
+        if (f.x < -40) f.x = W + 40; else if (f.x > W + 40) f.x = -40;
+        const twinkle = .65 + .35 * Math.sin(t * f.tw * 6.283 + f.ph);
+        const size = f.r * 5;
+        ctx.globalAlpha = Math.min(1, f.o * twinkle);
+        ctx.drawImage(SPRITES[f.sp], f.x - size / 2, f.y - size / 2, size, size);
       }
       ctx.globalAlpha = 1;
-
-      if (snowActive) {
-        raf = requestAnimationFrame(frame);
-      }
+      raf = requestAnimationFrame(frame);
     }
 
-    function start() {
-      if (!raf && snowActive) {
-        last = performance.now();
-        raf = requestAnimationFrame(frame);
-      }
+    function start() { if (!raf && snowActive) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+    window.addEventListener('resize', () => {
+      clearTimeout(rzTimer);
+      rzTimer = setTimeout(() => { resize(); populate(); }, 150);
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+    resize(); populate(); start();
+
+    const snowBtn = document.getElementById("toggleSnow");
+    const snowStatusText = document.getElementById("snowStatusText");
+    if (snowBtn) {
+      snowBtn.addEventListener("click", () => {
+        snowActive = !snowActive;
+        canvas.style.display = snowActive ? "block" : "none";
+        const sparksHolder = document.getElementById("snow-sparks");
+        if (sparksHolder) sparksHolder.style.display = snowActive ? "block" : "none";
+        if (snowStatusText) snowStatusText.textContent = snowActive ? "Snow ON" : "Snow OFF";
+        if (snowActive) start(); else stop();
+      });
     }
+  })();
 
-    function stop() {
-      if (raf) {
-        cancelAnimationFrame(raf);
-        raf = null;
-      }
+  (function () {
+    const holder = document.getElementById('snow-sparks');
+    if (!holder || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const CHARS = ['❄', '❅', '❆'];
+    const N = window.innerWidth < 640 ? 5 : 8;
+    for (let i = 0; i < N; i++) {
+      const s = document.createElement('span'); s.className = 'spark';
+      const f = document.createElement('i'); f.textContent = CHARS[i % CHARS.length];
+      s.style.setProperty('--x', (Math.random() * 100).toFixed(2) + 'vw');
+      s.style.setProperty('--d', (12 + Math.random() * 10).toFixed(2) + 's');
+      s.style.setProperty('--delay', (-Math.random() * 20).toFixed(2) + 's');
+      s.style.setProperty('--s', Math.round(10 + Math.random() * 10) + 'px');
+      s.style.setProperty('--o', (0.45 + Math.random() * 0.4).toFixed(2));
+      s.style.setProperty('--sw', (2.5 + Math.random() * 3).toFixed(2) + 's');
+      s.style.setProperty('--amp', Math.round(10 + Math.random() * 18) + 'px');
+      s.appendChild(f); holder.appendChild(s);
     }
-
-    window.addEventListener("resize", () => {
-      resize();
-      populate();
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stop();
-      else start();
-    });
-
-    resize();
-    populate();
-    start();
   })();
 </script>

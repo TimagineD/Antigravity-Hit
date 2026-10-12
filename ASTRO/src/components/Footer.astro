@@ -1,91 +1,63 @@
 ---
-// Footer.astro - Alpine Business Footer with Dynamic Copyright
+// Footer.astro - Identical Alpine Footer
 ---
-<footer class="bg-slate-950 text-white pt-20 pb-28 sm:pb-20 border-t border-white/10 relative z-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-main-grid">
 
-      <!-- Brand Info (Col 1-2) -->
-      <div class="lg:col-span-2 space-y-5">
-        <a href="#" class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white text-2xl shadow-lg">
-            🎿
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom: 1rem;">
+          <div class="brand-mark" style="width: 36px; height: 36px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+            </svg>
           </div>
-          <div>
-            <span class="font-display font-black text-2xl tracking-tight text-white block">
-              СКИ НАДЈА
-            </span>
-            <span class="text-xs font-bold tracking-widest text-sky-400 block uppercase" data-i18n="brand_sub">
-              ПОНИКВА • ОСОГОВО
-            </span>
+          <div class="brand-text">
+            <h1 style="color: #ffffff; font-size: 1.15rem;">СКИ НАДЈА</h1>
+            <span style="font-size: 0.65rem;">ПОНИКВА</span>
           </div>
-        </a>
-        <p class="text-slate-400 text-sm leading-relaxed max-w-sm" data-i18n="footer_brand_desc">
-          Вашиот доверлив партнер за ски и сноуборд опрема на Пониква. Забава, адреналин и безбедност на снежните патеки.
-        </p>
-        <div class="text-xs text-slate-500 font-medium">
-          🏔️ Надморска височина: 1,560m • Ски Стаза Пониква
         </div>
+        <p data-i18n="footer_brand_desc">
+          Вашиот доверлив партнер за ски и сноуборд опрема на Пониква. Забава, адреналин и безбедност на снежните
+          патеки.
+        </p>
       </div>
 
-      <!-- Column: Equipment -->
-      <div class="space-y-4">
-        <h4 class="font-bold text-white text-sm uppercase tracking-wider text-sky-400" data-i18n="foot_col_gear">
-          Опрема
-        </h4>
-        <ul class="space-y-2.5 text-sm text-slate-400">
-          <li><a href="#equipment" class="hover:text-white transition-colors" data-i18n="foot_l1">Ски Комплети</a></li>
-          <li><a href="#equipment" class="hover:text-white transition-colors" data-i18n="foot_l2">Сноуборд Опрема</a></li>
-          <li><a href="#equipment" class="hover:text-white transition-colors" data-i18n="foot_l3">Санки & Опрема за Деца</a></li>
-          <li><a href="#pricing" class="hover:text-white transition-colors" data-i18n="foot_l4">Ценовник и Пакети</a></li>
+      <div class="footer-col">
+        <h4 data-i18n="foot_col_gear">Опрема</h4>
+        <ul class="footer-links">
+          <li><a href="#equipment" data-i18n="foot_l1">Ски Комплети</a></li>
+          <li><a href="#equipment" data-i18n="foot_l2">Сноуборд Опрема</a></li>
+          <li><a href="#equipment" data-i18n="foot_l3">Санки & Опрема за Деца</a></li>
+          <li><a href="#pricing" data-i18n="foot_l4">Ценовник и Пакети</a></li>
         </ul>
       </div>
 
-      <!-- Column: Services & Villa -->
-      <div class="space-y-4">
-        <h4 class="font-bold text-white text-sm uppercase tracking-wider text-sky-400" data-i18n="foot_col_services">
-          Услуги & Вила
-        </h4>
-        <ul class="space-y-2.5 text-sm text-slate-400">
-          <li><a href="#villa" class="hover:text-white transition-colors" data-i18n="foot_l5">Планинска Вила Надја</a></li>
-          <li><a href="#advantages" class="hover:text-white transition-colors" data-i18n="foot_l6">Сушење и Дезинфекција</a></li>
-          <li><a href="#location" class="hover:text-white transition-colors" data-i18n="foot_l7">Локација и Патека</a></li>
-          <li><a href="#contact" class="hover:text-white transition-colors" data-i18n="foot_l8">Резервации</a></li>
+      <div class="footer-col">
+        <h4 data-i18n="foot_col_services">Услуги & Вила</h4>
+        <ul class="footer-links">
+          <li><a href="#villa" data-i18n="foot_l5">Планинска Вила Надја</a></li>
+          <li><a href="#advantages" data-i18n="foot_l6">Сушење и Дезинфекција</a></li>
+          <li><a href="#location" data-i18n="foot_l7">Локација и Патека</a></li>
+          <li><a href="#contact" data-i18n="foot_l8">Резервации</a></li>
         </ul>
       </div>
 
-      <!-- Column: Contact Details -->
-      <div class="space-y-4">
-        <h4 class="font-bold text-white text-sm uppercase tracking-wider text-sky-400" data-i18n="foot_col_contact">
-          Директен Контакт
-        </h4>
-        <ul class="space-y-3 text-sm text-slate-400">
-          <li>
-            <a href="tel:+38970000000" id="foot-phone" class="hover:text-white transition-colors flex items-center gap-2">
-              <span>📞</span> <span>+389 70 000 000</span>
-            </a>
+      <div class="footer-col">
+        <h4 data-i18n="foot_col_contact">Директен Контакт</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+38970000000" id="foot-phone">📞 +389 70 000 000</a></li>
+          <li><a href="https://wa.me/38970000000" target="_blank" rel="noopener" id="foot-wa">💬 WhatsApp Chat</a>
           </li>
-          <li>
-            <a href="https://wa.me/38970000000" target="_blank" rel="noopener" id="foot-wa" class="hover:text-emerald-400 transition-colors flex items-center gap-2">
-              <span>💬</span> <span>WhatsApp Резервации</span>
-            </a>
-          </li>
-          <li>
-            <a href="viber://chat?number=%2B38970000000" id="foot-viber" class="hover:text-purple-400 transition-colors flex items-center gap-2">
-              <span>🟣</span> <span>Viber Контакт</span>
-            </a>
-          </li>
-          <li class="pt-1 text-xs text-slate-500">
-            ⏰ Секој ден: 08:30 – 17:00
-          </li>
+          <li><a href="viber://chat?number=%2B38970000000" id="foot-viber">🟣 Viber Chat</a></li>
+          <li><span>📍 Пониква, Осоговски Планини</span></li>
         </ul>
       </div>
 
     </div>
 
-    <!-- Bottom Copyright & Signature -->
-    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-      <p>© <span id="currentYear"></span> СКИ НАДЈА – Пониква. Сите права се задржани.</p>
+    <div class="footer-bottom">
+      <p>© <span id="currentYear"></span> Ски Надја Пониква. Сите права се задржани.</p>
       <p data-i18n="footer_signature">Направено со љубов кон планината и зимските спортови ❄️</p>
     </div>
   </div>
@@ -93,7 +65,5 @@
 
 <script>
   const yearEl = document.getElementById("currentYear");
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
-  }
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 </script>
