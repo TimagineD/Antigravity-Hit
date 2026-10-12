@@ -11,9 +11,11 @@ const {
   title = "СКИ НАДЈА – Пониква | Изнајмување Ски & Сноуборд Опрема",
   description = "Премиум ски и сноуборд опрема на самиот старт на скијачката патека на Пониква. Скии, бордови, санки, топла опрема и планинска вила."
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <!DOCTYPE html>
-<html lang="mk">
+<html lang="mk" style={`--bg-mountain: url('${base}позадина.webp');`}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -26,14 +28,14 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/section1-skier.png" />
+    <meta property="og:image" content={`${base}images/section1-skier.png`} />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
   </head>
   <body>
     <slot />

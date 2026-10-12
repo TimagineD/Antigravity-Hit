@@ -539,7 +539,7 @@
       position: absolute;
       inset: 0;
       opacity: 0.08;
-      background-image: url('/позадина.webp');
+      background-image: var(--bg-mountain, url('/позадина.webp'));
       background-size: cover;
       background-position: center top;
       pointer-events: none;
@@ -745,7 +745,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url('/позадина.webp');
+      background-image: var(--bg-mountain, url('/позадина.webp'));
       background-repeat: repeat-y;
       background-size: 100% auto;
       opacity: 0.04;

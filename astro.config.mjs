@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://TimagineD.github.io',
+  base: '/Antigravity-Hit',
   vite: {
     plugins: [tailwindcss()],
   },
