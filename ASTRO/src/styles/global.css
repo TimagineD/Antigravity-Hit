@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-glacier-cyan: #0ea5e9;
+  --color-glacier-glow: #38bdf8;
+  --color-alpine-blue: #0284c7;
+  --color-deep-navy: #091424;
+  --color-bg-sky: #0a1322;
+  --color-bg-dark: #070e18;
+  --color-powder-ice: #f0f6fc;
+  --color-sun-orange: #f97316;
+  --color-sun-amber: #fb923c;
+  --color-wa-green: #25d366;
+  --color-viber-purple: #7360f2;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --glacier-cyan: #0ea5e9;
+  --glacier-glow: #38bdf8;
+  --alpine-blue: #0284c7;
+  --sun-orange: #f97316;
+  --sun-amber: #fb923c;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background-color: #f5f8fc;
+  color: #0f172a;
+  font-family: var(--font-body);
+}
+
+body {
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.08) 0px, transparent 50%);
+}
+
+::selection {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 27, 45, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glow-glacier {
+  box-shadow: 0 0 35px rgba(14, 165, 233, 0.25);
+}
+
+.glow-orange {
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}

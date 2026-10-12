@@ -1,0 +1,127 @@
+---
+// Header.astro - Top Status Bar & Sticky Glassmorphism Navigation
+---
+<header class="sticky top-0 z-50 w-full transition-all duration-300" id="navbar">
+  <!-- Top Status Bar -->
+  <div class="bg-[#070e18]/90 text-white text-xs py-2 px-4 backdrop-blur-md border-b border-white/10 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span data-i18n="top_status">Пониква • 1,560m • Отворена Ски Патека 08:30 – 17:00</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-300">
+        <a href="tel:+38970000000" id="top-phone" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span>📞</span> <span>+389 70 000 000</span>
+        </a>
+        <span class="text-white/20">|</span>
+        <a href="https://wa.me/38970000000" target="_blank" rel="noopener" id="top-wa" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+          <span>💬</span> <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Glassmorphic Navigation -->
+  <div class="bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform duration-300">
+          🎿
+        </div>
+        <div>
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-slate-900 block leading-tight">
+            СКИ НАДЈА
+          </span>
+          <span class="text-[10px] sm:text-xs font-bold tracking-widest text-sky-600 block uppercase" data-i18n="brand_sub">
+            ПОНИКВА • ОСОГОВО
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <a href="#equipment" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_equipment">Опрема</a>
+        <a href="#advantages" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_why">Зошто нас</a>
+        <a href="#pricing" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_pricing">Ценовник</a>
+        <a href="#villa" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_villa">Планинска Вила</a>
+        <a href="#location" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_location">Локација</a>
+        <a href="#contact" class="hover:text-sky-600 transition-colors py-1" data-i18n="nav_contact">Контакт</a>
+      </nav>
+
+      <!-- Right Controls: Language Switcher & Book CTA -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        
+        <!-- Language Switcher Pill -->
+        <div class="bg-slate-100 p-1 rounded-full border border-slate-200 flex items-center text-xs font-bold shadow-inner">
+          <button id="btn-mk" type="button" class="lang-btn active px-3 py-1 rounded-full transition-all duration-200 bg-sky-600 text-white shadow-sm cursor-pointer">
+            MK
+          </button>
+          <button id="btn-en" type="button" class="lang-btn px-3 py-1 rounded-full transition-all duration-200 text-slate-600 hover:text-slate-900 cursor-pointer">
+            EN
+          </button>
+        </div>
+
+        <!-- Booking CTA Button -->
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5">
+          <span>🎿</span>
+          <span data-i18n="nav_book_btn">Резервирај</span>
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="menuToggle" type="button" class="lg:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawer" class="lg:hidden hidden bg-white/95 backdrop-blur-2xl border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl transition-all duration-300">
+    <div class="flex flex-col space-y-3 font-semibold text-slate-800">
+      <a href="#equipment" class="mob-nav-link py-2 border-b border-slate-100" data-i18n="nav_equipment">Опрема</a>
+      <a href="#advantages" class="mob-nav-link py-2 border-b border-slate-100" data-i18n="nav_why">Зошто нас</a>
+      <a href="#pricing" class="mob-nav-link py-2 border-b border-slate-100" data-i18n="nav_pricing">Ценовник</a>
+      <a href="#villa" class="mob-nav-link py-2 border-b border-slate-100" data-i18n="nav_villa">Планинска Вила</a>
+      <a href="#location" class="mob-nav-link py-2 border-b border-slate-100" data-i18n="nav_location">Локација</a>
+      <a href="#contact" class="mob-nav-link py-2" data-i18n="nav_contact">Контакт</a>
+    </div>
+    <div class="pt-2">
+      <a href="#contact" class="mob-nav-link w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-3 rounded-xl shadow-md">
+        <span>🎿</span>
+        <span data-i18n="nav_book_btn">Резервирај</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile drawer toggle behavior
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileDrawer = document.getElementById("mobileDrawer");
+  if (menuToggle && mobileDrawer) {
+    menuToggle.addEventListener("click", () => {
+      mobileDrawer.classList.toggle("hidden");
+    });
+    document.querySelectorAll(".mob-nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileDrawer.classList.add("hidden");
+      });
+    });
+  }
+
+  // Scroll effect on header
+  window.addEventListener("scroll", () => {
+    const navbar = document.getElementById("navbar");
+    if (!navbar) return;
+    if (window.scrollY > 20) {
+      navbar.classList.add("shadow-md");
+    } else {
+      navbar.classList.remove("shadow-md");
+    }
+  }, { passive: true });
+</script>

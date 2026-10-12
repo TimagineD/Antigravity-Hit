@@ -1,0 +1,52 @@
+---
+// index.astro - Recreated Landing Page in Astro + Tailwind CSS v4
+import Layout from "../layouts/Layout.astro";
+import Snowfall from "../components/Snowfall.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import EquipmentShowcase from "../components/EquipmentShowcase.astro";
+import Advantages from "../components/Advantages.astro";
+import Pricing from "../components/Pricing.astro";
+import Villa from "../components/Villa.astro";
+import BookingConcierge from "../components/BookingConcierge.astro";
+import LocationFaq from "../components/LocationFaq.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+---
+<Layout>
+  <!-- 60 FPS Canvas Snowfall Particle Engine -->
+  <Snowfall />
+
+  <!-- Navigation Header -->
+  <Header />
+
+  <!-- Main Landmark Container -->
+  <main>
+    <!-- Alpine Atmospheric Hero -->
+    <Hero />
+
+    <!-- Gear Presentation & Specifications -->
+    <EquipmentShowcase />
+
+    <!-- Why Us / Core Advantages -->
+    <Advantages />
+
+    <!-- Transparent Rental Packages -->
+    <Pricing />
+
+    <!-- Mountain Chalet Accommodation -->
+    <Villa />
+
+    <!-- Booking Concierge & Live WhatsApp Inquiry Form -->
+    <BookingConcierge />
+
+    <!-- Location Guide, Access Map & Interactive FAQ -->
+    <LocationFaq />
+  </main>
+
+  <!-- Complete Alpine Footer -->
+  <Footer />
+
+  <!-- Fixed Mobile Action Bar -->
+  <MobileBar />
+</Layout>

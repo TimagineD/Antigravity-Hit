@@ -1,0 +1,81 @@
+---
+// Villa.astro - Mountain Chalet Accommodation Showcase
+---
+<section class="py-24 sm:py-32 relative overflow-hidden bg-slate-900 text-white" id="villa">
+  <!-- Ambient Warm & Mountain Glow -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-orange-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-sky-500/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="bg-white/5 backdrop-blur-2xl rounded-3xl sm:rounded-[36px] border border-white/10 p-6 sm:p-12 lg:p-16 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+        <!-- Left Column: Chalet Photo -->
+        <div class="lg:col-span-6 relative group">
+          <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl border border-white/10">
+            <img 
+              src="/images/villa-ponikva.jpg" 
+              alt="Вила Надја Пониква - Планинска Вила" 
+              width="800" 
+              height="450" 
+              class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" 
+              loading="lazy" 
+            />
+          </div>
+          <!-- Badge overlay -->
+          <div class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl shadow-lg flex items-center gap-2">
+            <span>🏡</span>
+            <span>Пониква • Осогово</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Chalet Description & Amenities -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-orange-500/20 text-orange-400 font-bold text-xs uppercase border border-orange-500/30" data-i18n="villa_tag">
+            Планинско Сместување
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight" data-i18n="villa_title">
+            Вила Надја Пониква
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal" data-i18n="villa_desc">
+            Изнајмуваме и автентична, топла планинска вила на Пониква, лоцирана во близина на скијачката патека. Совршена за семејства и друштва што сакаат вистински планински мир, камин и прекрасен поглед на снежните борови шуми.
+          </p>
+
+          <!-- 4 Amenity Highlights Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
+              <span class="text-xl">👥</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-200" data-i18n="v_am1">Капацитет: 6 – 10 гости</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
+              <span class="text-xl">🔥</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-200" data-i18n="v_am2">Камин на дрва & Парно</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
+              <span class="text-xl">🍳</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-200" data-i18n="v_am3">Комплетна кујна & Скара</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
+              <span class="text-xl">🚗</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-200" data-i18n="v_am4">Директен пристап и паркинг</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 pt-4">
+            <a href="#contact" class="select-gear-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-2xl shadow-lg shadow-orange-500/25 transition-all duration-300 hover:-translate-y-0.5" data-gear="Mountain villa">
+              <span>📅</span>
+              <span data-i18n="btn_inquire_villa">Прашај за Слободни Термини</span>
+            </a>
+            <a href="tel:+38970000000" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-2xl border border-white/20 transition-all duration-200">
+              <span>📞</span>
+              <span data-i18n="btn_call_direct">Директен Повик</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
