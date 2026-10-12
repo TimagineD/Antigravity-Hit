@@ -496,6 +496,11 @@
       box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
     }
 
+    /* Mobile Language Switcher inside Navigation (hidden on desktop) */
+    .nav-lang-toggle {
+      display: none;
+    }
+
     /* Mobile Hamburger Toggle Button: Hidden on desktop; displayed on small screens */
     .menu-toggle {
       display: none;
@@ -1937,6 +1942,39 @@
 
       .top-bar-inner {
         justify-content: center;
+      }
+
+      /* On mobile phones: Swap 'Резервирај' button with language switcher */
+      .nav-cta .btn-nav {
+        display: none !important;
+      }
+
+      .nav-cta .nav-lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(15, 23, 42, 0.06);
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: var(--radius-pill);
+        padding: 3px 6px;
+        gap: 2px;
+      }
+
+      .nav-cta .nav-lang-toggle .lang-btn {
+        padding: 3px 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-muted);
+        border-radius: var(--radius-pill);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .nav-cta .nav-lang-toggle .lang-btn.active {
+        background: var(--glacier-cyan);
+        color: #ffffff;
+        box-shadow: 0 1px 4px rgba(14, 165, 233, 0.35);
       }
 
       /* Reveals mobile floating sticky action bar at bottom of screen */

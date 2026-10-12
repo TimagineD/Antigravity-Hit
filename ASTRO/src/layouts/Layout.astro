@@ -79,12 +79,12 @@ const {
           }
         });
 
-        const btnMk = document.getElementById("btn-mk");
-        const btnEn = document.getElementById("btn-en");
-        if (btnMk && btnEn) {
-          btnMk.classList.toggle("active", lang === "mk");
-          btnEn.classList.toggle("active", lang === "en");
-        }
+        document.querySelectorAll(".btn-lang-mk, #btn-mk").forEach(el => {
+          el.classList.toggle("active", lang === "mk");
+        });
+        document.querySelectorAll(".btn-lang-en, #btn-en").forEach(el => {
+          el.classList.toggle("active", lang === "en");
+        });
 
         // Trigger WhatsApp live preview recalculation in selected language
         if (typeof (window as any).updateBookingPreview === "function") {
@@ -92,8 +92,12 @@ const {
         }
       }
 
-      document.getElementById("btn-mk")?.addEventListener("click", () => applyTranslations("mk"));
-      document.getElementById("btn-en")?.addEventListener("click", () => applyTranslations("en"));
+      document.querySelectorAll(".btn-lang-mk, #btn-mk").forEach(el => {
+        el.addEventListener("click", () => applyTranslations("mk"));
+      });
+      document.querySelectorAll(".btn-lang-en, #btn-en").forEach(el => {
+        el.addEventListener("click", () => applyTranslations("en"));
+      });
 
       setupPhoneLinks(PHONE);
     </script>
