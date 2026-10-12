@@ -1,23 +1,33 @@
 <!DOCTYPE html>
+<!-- Document Language: Set to Macedonian ('mk') for localized typography and accessibility -->
 <html lang="mk">
 
 <head>
+  <!-- Character Encoding: UTF-8 ensures standard support for Cyrillic letters and symbols -->
   <meta charset="utf-8">
+  <!-- Viewport Configuration: Responsive scaling for mobile and desktop screens with iOS safe-area support -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Color Scheme: Forces browser to render standard light background palette -->
   <meta name="color-scheme" content="light">
+  <!-- SEO Page Title: Business brand ('СКИ НАДЈА'), location ('Пониква'), and primary service -->
   <title>СКИ НАДЈА – Пониква | Изнајмување Ски & Сноуборд Опрема</title>
+  <!-- Meta Description: Search engine snippet highlighting trackside rental, gear options, and chalet accommodation -->
   <meta name="description" content="Премиум ски и сноуборд опрема на самиот старт на скијачката патека на Пониква. Скии, бордови, санки, топла опрема и планинска вила.">
 
-  <!-- Google Fonts -->
+  <!-- Google Web Fonts: Preconnecting to Google Fonts CDN for fast font delivery -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Typography Families: 'Outfit' (display headlines) and 'Plus Jakarta Sans' (clean body text) -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
        MODERN DESIGN TOKENS & SYSTEM
+       Defines CSS custom properties (variables) for consistent colors, elevations,
+       typography, and component radii throughout the entire application.
        ========================================================================== */
     :root {
+      /* Surface & Glassmorphism Colors */
       --bg-sky: #0a1322;
       --bg-dark: #070e18;
       --bg-card: rgba(255, 255, 255, 0.82);
@@ -26,6 +36,7 @@
       --border-glass: rgba(255, 255, 255, 0.4);
       --border-subtle: rgba(14, 143, 230, 0.15);
       
+      /* Winter / Alpine Color Palette */
       --snow-white: #ffffff;
       --powder-ice: #f0f6fc;
       --glacier-cyan: #0ea5e9;
@@ -33,40 +44,49 @@
       --alpine-blue: #0284c7;
       --deep-navy: #091424;
       
+      /* Vibrant Sun / Warm Action Colors */
       --sun-orange: #f97316;
       --sun-amber: #fb923c;
       --sun-glow: rgba(249, 115, 22, 0.35);
       
+      /* Slate Ink & Typography Contrast Tokens */
       --ink: #0f172a;
       --ink-muted: #475569;
       --ink-light: #94a3b8;
       
+      /* Social Concierge Channel Brand Colors */
       --wa-green: #25d366;
       --viber-purple: #7360f2;
       
+      /* Standard Border Radii Scale */
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 22px;
       --radius-xl: 32px;
       --radius-pill: 9999px;
       
+      /* Depth & Box Shadows (Layered elevations + vibrant glowing accents) */
       --shadow-sm: 0 2px 8px rgba(9, 20, 36, 0.06);
       --shadow-md: 0 10px 30px rgba(9, 20, 36, 0.08);
       --shadow-lg: 0 20px 50px rgba(9, 20, 36, 0.12);
       --shadow-glow: 0 0 35px rgba(14, 165, 233, 0.3);
       --shadow-orange: 0 10px 25px rgba(249, 115, 22, 0.35);
 
+      /* Typography Font Families */
       --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       
+      /* Global Layout & Smooth Scrolling Behavior */
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
 
+    /* Universal Box-Sizing: Ensures padding and borders are factored into element dimensions */
     *, *::before, *::after {
       box-sizing: inherit;
     }
 
+    /* Document Root: Sets base background, typography smoothing, and scroll margin for sticky header */
     html {
       background: var(--powder-ice);
       color: var(--ink);
@@ -77,6 +97,7 @@
       scroll-padding-top: 80px;
     }
 
+    /* Main Body Element: Strips default margins, prevents horizontal scrolling, and adds ambient light mesh */
     body {
       margin: 0;
       padding: 0;
@@ -87,13 +108,13 @@
         radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.08) 0px, transparent 50%);
     }
 
-    /* Selection */
+    /* Text Selection: Highlights selected text in branded glacier cyan */
     ::selection {
       background: var(--glacier-cyan);
       color: var(--snow-white);
     }
 
-    /* Typography */
+    /* Headings Defaults: Applies geometric display font ('Outfit') and tight letter spacing */
     h1, h2, h3, h4 {
       font-family: var(--font-display);
       margin: 0;
@@ -101,15 +122,18 @@
       letter-spacing: -0.02em;
     }
 
+    /* Paragraph Reset: Strips default vertical margins for precise spacing */
     p {
       margin: 0;
     }
 
+    /* Anchor Reset: Strips default underlines and inherits text colors */
     a {
       color: inherit;
       text-decoration: none;
     }
 
+    /* Responsive Image Scaling: Prevents images from exceeding parent boundaries */
     img {
       display: block;
       max-width: 100%;
@@ -118,7 +142,10 @@
 
     /* ==========================================================================
        SNOWFALL CANVAS & SPARKS
+       Full-screen non-blocking background particle system delivering an immersive
+       winter atmosphere without obstructing mouse or touch interactions.
        ========================================================================== */
+    /* Canvas Layer: 60 FPS HTML5 Canvas particle simulation layer */
     #snowfall {
       position: fixed;
       inset: 0;
@@ -128,6 +155,7 @@
       z-index: 50;
     }
 
+    /* Sparks Container: DOM layer holding stylized CSS-animated sparkling snowflake glyphs */
     #snow-sparks {
       position: fixed;
       inset: 0;
@@ -136,6 +164,7 @@
       z-index: 51;
     }
 
+    /* Individual Spark Element: Positions the falling particle using custom CSS variables */
     .spark {
       position: absolute;
       top: -5vh;
@@ -144,6 +173,7 @@
       animation-delay: var(--delay);
     }
 
+    /* Spark Icon & Glow: Renders glyph, neon glow text-shadow, sway drift, and rotation */
     .spark i {
       display: block;
       font-style: normal;
@@ -155,25 +185,31 @@
       animation: spark-sway var(--sw) ease-in-out infinite alternate, spark-spin var(--d) linear infinite;
     }
 
+    /* Keyframe: Vertical descent from top off-screen to bottom off-screen */
     @keyframes spark-fall {
       from { transform: translate3d(0, -6vh, 0); }
       to { transform: translate3d(0, 108vh, 0); }
     }
+    /* Keyframe: Horizontal pendulum swaying back and forth */
     @keyframes spark-sway {
       from { transform: translateX(calc(var(--amp) * -1)); }
       to { transform: translateX(var(--amp)); }
     }
+    /* Keyframe: Smooth 360-degree snowflake rotation */
     @keyframes spark-spin {
       from { rotate: 0deg; }
       to { rotate: 360deg; }
     }
 
+    /* Reduced Motion Accessibility: Disables all snowfall layers when requested by user */
     @media (prefers-reduced-motion: reduce) {
       #snowfall, #snow-sparks { display: none !important; }
     }
 
     /* ==========================================================================
        TOP STATUS ANNOUNCEMENT BAR
+       Displays live mountain altitude, lift opening hours, quick communication
+       links (Phone, WhatsApp), snowfall toggle button, and language selector.
        ========================================================================== */
     .top-bar {
       background: linear-gradient(90deg, #071220 0%, #0c2038 50%, #071220 100%);
@@ -185,6 +221,7 @@
       z-index: 100;
     }
 
+    /* Inner Flex Container: Spreads status information and quick links across max width */
     .top-bar-inner {
       max-width: 1300px;
       margin: 0 auto;
@@ -195,6 +232,7 @@
       flex-wrap: wrap;
     }
 
+    /* Live Mountain Status Badge: Groups green pulse dot with current piste operational info */
     .status-badge {
       display: inline-flex;
       align-items: center;
@@ -203,6 +241,7 @@
       letter-spacing: 0.01em;
     }
 
+    /* Green Pulsing Indicator: Glowing visual feedback signalling the ski track is open */
     .pulse-dot {
       width: 8px;
       height: 8px;
@@ -212,17 +251,20 @@
       animation: pulse 2s infinite;
     }
 
+    /* Pulse Keyframe: Scales and fades the green status dot continuously */
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.5; transform: scale(0.85); }
     }
 
+    /* Quick Action Links Container: Holds phone, WhatsApp, snow switch, and language buttons */
     .top-links {
       display: flex;
       align-items: center;
       gap: 1.25rem;
     }
 
+    /* Quick Action Link Item: Icon and text with smooth hover color transition */
     .top-links a {
       display: inline-flex;
       align-items: center;
@@ -234,7 +276,7 @@
       color: #38bdf8;
     }
 
-    /* Language Switcher Button */
+    /* Language Switcher Pill Container: Houses the MK and EN toggle buttons */
     .lang-toggle {
       display: inline-flex;
       align-items: center;
@@ -246,6 +288,7 @@
       cursor: pointer;
     }
 
+    /* Language Switch Button: Individual language selector button */
     .lang-btn {
       padding: 2px 8px;
       border-radius: var(--radius-pill);
@@ -258,13 +301,14 @@
       transition: all 0.2s;
     }
 
+    /* Active Language Button State: Highlighted in glacier cyan with subtle shadow */
     .lang-btn.active {
       background: var(--glacier-cyan);
       color: #ffffff;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* Snow toggle */
+    /* Snowfall Toggle Button: Allows visitors to turn the snowfall effect ON or OFF */
     .snow-toggle-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -285,6 +329,8 @@
 
     /* ==========================================================================
        STICKY GLASS HEADER / NAVIGATION
+       Sticky navigation bar featuring backdrop blur (glassmorphism), brand mark,
+       primary page links with animated underline indicators, and reservation CTA.
        ========================================================================== */
     .site-nav {
       position: sticky;
@@ -297,11 +343,13 @@
       transition: all 0.3s ease;
     }
 
+    /* Scrolled Modifier: Increases opacity and applies elevation shadow when page is scrolled */
     .site-nav.scrolled {
       background: rgba(255, 255, 255, 0.94);
       box-shadow: 0 10px 30px rgba(9, 20, 36, 0.07);
     }
 
+    /* Header Centered Container: Flex layout organizing logo, navigation, and CTA */
     .nav-container {
       max-width: 1300px;
       margin: 0 auto;
@@ -311,7 +359,7 @@
       align-items: center;
     }
 
-    /* Brand Logo */
+    /* Brand Identity Link: Combines the mountain graphic mark and business typography */
     .brand {
       display: flex;
       align-items: center;
@@ -319,6 +367,7 @@
       text-decoration: none;
     }
 
+    /* Brand Graphical Mark: Gradient mountain icon badge with glossy light reflection */
     .brand-mark {
       width: 44px;
       height: 44px;
@@ -333,6 +382,7 @@
       overflow: hidden;
     }
 
+    /* Brand Glossy Reflection: Diagonal light streak accent over the icon */
     .brand-mark::after {
       content: '';
       position: absolute;
@@ -340,6 +390,7 @@
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
     }
 
+    /* Brand Name Title: Bold business title in dark navy */
     .brand-text h1 {
       font-size: 1.35rem;
       font-weight: 800;
@@ -351,6 +402,7 @@
       gap: 6px;
     }
 
+    /* Brand Subtitle / Region: Tagline highlighting the mountain location ('ПОНИКВА • ОСОГОВО') */
     .brand-text span {
       display: block;
       font-size: 0.7rem;
@@ -361,7 +413,7 @@
       margin-top: 2px;
     }
 
-    /* Navigation Links */
+    /* Desktop Navigation Menu: Horizontal list of anchor links */
     .nav-menu {
       display: flex;
       align-items: center;
@@ -371,6 +423,7 @@
       padding: 0;
     }
 
+    /* Navigation Link Item: Styled text link with relative positioning for underline effect */
     .nav-menu a {
       font-size: 0.92rem;
       font-weight: 600;
@@ -379,6 +432,7 @@
       position: relative;
     }
 
+    /* Navigation Hover Underline: Animated expanding cyan indicator beneath the link */
     .nav-menu a::after {
       content: '';
       position: absolute;
@@ -398,12 +452,14 @@
       width: 100%;
     }
 
+    /* Header Right Actions: Wraps reservation button and mobile menu toggle */
     .nav-cta {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
+    /* Header Booking CTA Button: Eye-catching orange pill button triggering fast booking */
     .btn-nav {
       background: linear-gradient(135deg, var(--sun-orange) 0%, #ea580c 100%);
       color: #ffffff !important;
@@ -423,7 +479,7 @@
       box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
     }
 
-    /* Mobile Hamburger */
+    /* Mobile Hamburger Toggle Button: Hidden on desktop; displayed on small screens */
     .menu-toggle {
       display: none;
       background: none;
@@ -432,6 +488,7 @@
       padding: 8px;
     }
 
+    /* Hamburger Lines: Three horizontal bars animating into drawer trigger */
     .menu-toggle span {
       display: block;
       width: 24px;
@@ -444,6 +501,8 @@
 
     /* ==========================================================================
        HERO / WELCOME SECTION (WITH SEAMLESS CONTINUOUS ARTWORK)
+       High-conversion introductory hero section highlighting trackside equipment
+       pickup, value propositions, and primary CTA buttons.
        ========================================================================== */
     .hero-section {
       position: relative;
@@ -453,7 +512,7 @@
       border-bottom: 1px solid rgba(226, 232, 240, 0.6);
     }
 
-    /* Mountain Silhouette Background */
+    /* Mountain Silhouette Backdrop: Low-opacity background texture showcasing Ponikva mountains */
     .hero-backdrop {
       position: absolute;
       inset: 0;
@@ -464,7 +523,7 @@
       pointer-events: none;
     }
 
-    /* Sun Glow Behind Hero */
+    /* Ambient Sun Glow: Large blurred radial gradient giving warm sunrise effect */
     .hero-glow {
       position: absolute;
       top: -120px;
@@ -477,6 +536,7 @@
       pointer-events: none;
     }
 
+    /* Hero Centered Container: Aligns headlines, badges, and highlights */
     .hero-container {
       max-width: 1240px;
       margin: 0 auto;
@@ -485,6 +545,7 @@
       text-align: center;
     }
 
+    /* Location Value Pill: Eye-catching badge announcing trackside location */
     .hero-pill {
       display: inline-flex;
       align-items: center;
@@ -501,6 +562,7 @@
       backdrop-filter: blur(8px);
     }
 
+    /* Main Hero Headline: Responsive fluid typography with balanced line breaks */
     .hero-title {
       font-size: clamp(2.2rem, 5.2vw, 4.2rem);
       font-weight: 900;
@@ -510,12 +572,14 @@
       text-wrap: balance;
     }
 
+    /* Gradient Text Accent: Multi-color gradient fill spanning alpine blue to sun orange */
     .hero-title .gradient-text {
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 60%, #ea580c 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
+    /* Hero Subtitle Paragraph: Descriptive copy emphasizing sanitized, fitted equipment */
     .hero-subtitle {
       font-size: clamp(1.05rem, 1.8vw, 1.35rem);
       line-height: 1.55;
@@ -525,6 +589,7 @@
       text-wrap: balance;
     }
 
+    /* CTA Button Group: Container holding primary booking and secondary explore buttons */
     .hero-cta-group {
       display: flex;
       justify-content: center;
@@ -534,6 +599,7 @@
       margin-bottom: 3rem;
     }
 
+    /* Primary Action Button: High-visibility orange gradient button with shadow lift */
     .btn-primary {
       background: linear-gradient(135deg, var(--sun-orange) 0%, #ea580c 100%);
       color: #ffffff;
@@ -554,6 +620,7 @@
       box-shadow: 0 14px 28px rgba(249, 115, 22, 0.45);
     }
 
+    /* Secondary Action Button: Frosted white pill button with subtle border */
     .btn-secondary {
       background: rgba(255, 255, 255, 0.9);
       color: var(--deep-navy);
@@ -576,7 +643,7 @@
       box-shadow: var(--shadow-md);
     }
 
-    /* Trust Feature Badges in Hero */
+    /* Hero Highlights Grid: 4 value proposition cards below the main CTA buttons */
     .hero-highlights {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -585,6 +652,7 @@
       margin: 0 auto;
     }
 
+    /* Individual Highlight Card: Frosted glass card with icon, title, and descriptive snippet */
     .highlight-card {
       background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.6);
@@ -605,6 +673,7 @@
       border-color: rgba(14, 165, 233, 0.3);
     }
 
+    /* Highlight Icon Box: Soft blue square holding emoji icon */
     .highlight-icon {
       width: 42px;
       height: 42px;
@@ -618,6 +687,7 @@
       font-size: 1.25rem;
     }
 
+    /* Highlight Information: Typography for the card title and short description */
     .highlight-info h4 {
       font-size: 0.95rem;
       font-weight: 700;
@@ -633,6 +703,8 @@
 
     /* ==========================================================================
        MOUNTAIN SLOPE SHOWCASE SECTIONS (SKI, BOARD, KIDS)
+       Alternating visual showcase rows pairing dynamic product renders with
+       feature chips, brand badges, and direct rental CTA triggers.
        ========================================================================== */
     .slope-stream {
       position: relative;
@@ -644,7 +716,7 @@
       padding: 3rem 0 6rem;
     }
 
-    /* Watermark background tracks */
+    /* Watermark Background Tracks: Subtle repeating silhouette texture in section background */
     .slope-stream::before {
       content: '';
       position: absolute;
@@ -656,6 +728,7 @@
       pointer-events: none;
     }
 
+    /* Centered Stream Container: Houses the showcase section header and product rows */
     .stream-container {
       max-width: 1300px;
       margin: 0 auto;
@@ -664,11 +737,13 @@
       z-index: 2;
     }
 
+    /* Reusable Section Header: Centered title and eyebrow category tag */
     .section-header-badge {
       text-align: center;
       margin-bottom: 4rem;
     }
 
+    /* Eyebrow Label: Uppercase orange tracking header (e.g. 'НАШАТА ОПРЕМА') */
     .section-eyebrow {
       display: inline-block;
       text-transform: uppercase;
@@ -679,6 +754,7 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Section Main Title: Fluid, bold section title */
     .section-main-title {
       font-size: clamp(2rem, 3.8vw, 3rem);
       font-weight: 900;
@@ -686,7 +762,7 @@
       letter-spacing: -0.02em;
     }
 
-    /* Showcase Section Card */
+    /* Showcase Row Layout: Two-column grid positioning imagery and product specifications */
     .gear-showcase-row {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
@@ -696,6 +772,7 @@
       position: relative;
     }
 
+    /* Reversed Modifier: Inverts column order so image appears on right side */
     .gear-showcase-row.reversed {
       grid-template-columns: 1fr 1.1fr;
     }
@@ -708,7 +785,7 @@
       order: 1;
     }
 
-    /* Centered Kids Row */
+    /* Centered Layout: Single column variant optimized for the kids & family sledges section */
     .gear-showcase-row.centered-layout {
       grid-template-columns: 1fr;
       text-align: center;
@@ -729,11 +806,12 @@
       justify-content: center;
     }
 
-    /* Gear Visual Container */
+    /* Gear Visual Wrapper: Holds the 3D product render, radial glow, and floating feature badges */
     .gear-visual {
       position: relative;
     }
 
+    /* Image Stage Radial Blur: Ambient circular light behind gear photography */
     .image-stage-backdrop {
       position: absolute;
       inset: -5% -5% -5% -5%;
@@ -744,6 +822,7 @@
       pointer-events: none;
     }
 
+    /* Gear Image Stage: Interactive wrapper applying gentle hover lift and spring easing */
     .gear-image-wrapper {
       position: relative;
       z-index: 2;
@@ -761,7 +840,7 @@
       user-select: none;
     }
 
-    /* Floating Feature Badges over image */
+    /* Floating Feature Badges: Glassmorphic pills overlaid on product photography highlighting key attributes */
     .floating-card-badge {
       position: absolute;
       background: rgba(255, 255, 255, 0.92);
@@ -791,17 +870,19 @@
       animation-delay: -2s;
     }
 
+    /* Floating Keyframe: Gentle vertical translation simulating weightless hovering */
     @keyframes floatBadge {
       0% { transform: translateY(0px); }
       100% { transform: translateY(-8px); }
     }
 
-    /* Gear Content */
+    /* Gear Content Column: Typography, description, spec chips, and call-to-actions */
     .gear-content {
       position: relative;
       z-index: 3;
     }
 
+    /* Product Tag: Pill tag indicating category (e.g. 'СКИ КОМПЛЕТИ') */
     .gear-tag {
       display: inline-flex;
       align-items: center;
@@ -817,6 +898,7 @@
       margin-bottom: 1rem;
     }
 
+    /* Product Title: Bold product line name */
     .gear-title {
       font-size: clamp(1.8rem, 3.2vw, 2.7rem);
       font-weight: 800;
@@ -826,6 +908,7 @@
       text-wrap: balance;
     }
 
+    /* Product Description: Summary of package inclusions and fitting */
     .gear-desc {
       font-size: 1.05rem;
       line-height: 1.6;
@@ -834,7 +917,7 @@
       text-wrap: balance;
     }
 
-    /* Spec Pills */
+    /* Specification Pill List: Container for technical chip badges */
     .spec-pills {
       display: flex;
       flex-wrap: wrap;
@@ -842,6 +925,7 @@
       margin-bottom: 2rem;
     }
 
+    /* Spec Chip Badge: Individual chip highlighting boot sizes, tuning, or certifications */
     .spec-pill {
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
@@ -863,6 +947,7 @@
       box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
     }
 
+    /* Action Button Wrapper: Arranges booking and direct call buttons */
     .btn-wrap {
       display: flex;
       align-items: center;
@@ -872,6 +957,8 @@
 
     /* ==========================================================================
        WHY US / THE PONIKVA TRACKSIDE ADVANTAGE (FEATURES GRID)
+       Showcases core service advantages: 0-meter trackside pickup, certified ISO DIN
+       binding calibration, ozone heated boot drying, and combined villa accommodation.
        ========================================================================== */
     .features-section {
       background: linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
@@ -881,11 +968,13 @@
       position: relative;
     }
 
+    /* Centered Features Container */
     .features-container {
       max-width: 1240px;
       margin: 0 auto;
     }
 
+    /* Features Responsive Grid: Auto-fit multi-column layout for advantage cards */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -893,6 +982,7 @@
       margin-top: 3.5rem;
     }
 
+    /* Feature Advantage Card: Interactive white card with gradient accent top line on hover */
     .feature-card {
       background: #ffffff;
       border: 1px solid rgba(226, 232, 240, 0.9);
@@ -904,6 +994,7 @@
       overflow: hidden;
     }
 
+    /* Feature Card Top Accent: Subtle dual-color line revealing upon hover */
     .feature-card::before {
       content: '';
       position: absolute;
@@ -926,6 +1017,7 @@
       opacity: 1;
     }
 
+    /* Feature Icon Badge Box: Rounded square with soft cyan gradient fill */
     .feature-icon-box {
       width: 52px;
       height: 52px;
@@ -939,6 +1031,7 @@
       margin-bottom: 1.25rem;
     }
 
+    /* Advantage Headline */
     .feature-card h3 {
       font-size: 1.2rem;
       font-weight: 700;
@@ -946,6 +1039,7 @@
       margin-bottom: 0.6rem;
     }
 
+    /* Advantage Description Body */
     .feature-card p {
       font-size: 0.92rem;
       color: var(--ink-muted);
@@ -954,17 +1048,21 @@
 
     /* ==========================================================================
        PRICING & PACKAGES SECTION
+       Presents transparent daily rental prices for complete ski packages, snowboard
+       sets, and kids' sledges with explicit checklists of included equipment.
        ========================================================================== */
     .pricing-section {
       background: #ffffff;
       padding: 5.5rem 1.5rem;
     }
 
+    /* Centered Container */
     .pricing-container {
       max-width: 1240px;
       margin: 0 auto;
     }
 
+    /* Responsive Pricing Grid: Card columns for each package category */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -972,6 +1070,7 @@
       margin-top: 3.5rem;
     }
 
+    /* Individual Pricing Tier Card */
     .pricing-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -985,12 +1084,14 @@
       position: relative;
     }
 
+    /* Featured Plan Modifier (Popular Ski Package): Highlighted with cyan border and glow */
     .pricing-card.featured {
       border: 2px solid var(--glacier-cyan);
       box-shadow: 0 15px 40px rgba(14, 165, 233, 0.15);
       background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
     }
 
+    /* Popular Badge Ribbon: Top floating badge marking the most popular package */
     .pricing-badge {
       position: absolute;
       top: -12px;
@@ -1011,6 +1112,7 @@
       box-shadow: var(--shadow-lg);
     }
 
+    /* Package Title */
     .pricing-card h3 {
       font-size: 1.35rem;
       font-weight: 800;
@@ -1018,12 +1120,14 @@
       margin-bottom: 0.35rem;
     }
 
+    /* Package Subtitle Tagline */
     .pricing-tagline {
       font-size: 0.85rem;
       color: var(--ink-muted);
       margin-bottom: 1.5rem;
     }
 
+    /* Daily Rate Figure: Large font displaying daily cost in Macedonian Denars (MKD) */
     .pricing-rate {
       font-family: var(--font-display);
       font-size: 2.2rem;
@@ -1042,6 +1146,7 @@
       color: var(--ink-light);
     }
 
+    /* Included Features List */
     .pricing-features {
       list-style: none;
       padding: 0;
@@ -1050,6 +1155,7 @@
       padding-top: 1.25rem;
     }
 
+    /* Individual Inclusions Item with Checkmark */
     .pricing-features li {
       font-size: 0.88rem;
       color: var(--ink);
@@ -1066,6 +1172,7 @@
       flex-shrink: 0;
     }
 
+    /* Package Select Button: Direct shortcut selecting this gear type in booking form */
     .btn-pricing {
       width: 100%;
       text-align: center;
@@ -1094,6 +1201,8 @@
 
     /* ==========================================================================
        VILLA NADJA PONIKVA SECTION (MOUNTAIN CHALET RETREAT)
+       Dark luxury mountain chalet theme detailing guest capacity, amenities
+       (wood fireplace, BBQ, heating), and instant booking inquiry links.
        ========================================================================== */
     .villa-section {
       background: linear-gradient(180deg, #07101d 0%, #0c1a2e 100%);
@@ -1103,6 +1212,7 @@
       overflow: hidden;
     }
 
+    /* Ambient Warm Glow: Deep blurred radial glow enhancing cozy fire warmth */
     .villa-backdrop-glow {
       position: absolute;
       top: 50%;
@@ -1122,6 +1232,7 @@
       z-index: 5;
     }
 
+    /* Villa Glass Card: 2-column frosted dark glass card */
     .villa-card {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
@@ -1135,6 +1246,7 @@
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
     }
 
+    /* Chalet Photo Frame: Curved overflow container with zoom effect on hover */
     .villa-image-frame {
       position: relative;
       border-radius: var(--radius-lg);
@@ -1153,6 +1265,7 @@
       transform: scale(1.04);
     }
 
+    /* Overlaid Category Tag */
     .villa-tag-badge {
       position: absolute;
       top: 16px;
@@ -1180,6 +1293,7 @@
       margin-bottom: 1.75rem;
     }
 
+    /* Villa Amenities Grid: 2-column grid displaying key chalet amenities */
     .villa-amenities {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1187,6 +1301,7 @@
       margin-bottom: 2.25rem;
     }
 
+    /* Amenity Item: Icon and description label */
     .amenity-item {
       display: flex;
       align-items: center;
@@ -1203,6 +1318,8 @@
 
     /* ==========================================================================
        INTERACTIVE BOOKING & WHATSAPP / VIBER CONCIERGE
+       Two-column contact center: Left column offers direct calling, WhatsApp, and
+       Viber buttons; Right column provides an interactive form with live message preview.
        ========================================================================== */
     .booking-section {
       background: #f8fafc;
@@ -1215,6 +1332,7 @@
       margin: 0 auto;
     }
 
+    /* Main Booking Box: 2-column split card on desktop */
     .booking-box {
       background: #ffffff;
       border: 1px solid rgba(226, 232, 240, 0.9);
@@ -1238,7 +1356,7 @@
       margin-bottom: 2rem;
     }
 
-    /* Direct Contact Buttons (Call, WhatsApp, Viber) */
+    /* Direct Contact Stack: Direct Call, WhatsApp Chat, and Viber Chat buttons */
     .direct-contacts {
       display: flex;
       flex-direction: column;
@@ -1246,6 +1364,7 @@
       margin-bottom: 2rem;
     }
 
+    /* Direct Action Button Base */
     .contact-action-btn {
       display: flex;
       align-items: center;
@@ -1258,6 +1377,7 @@
       text-decoration: none;
     }
 
+    /* Direct Phone Action Button */
     .contact-action-btn.btn-phone {
       background: var(--deep-navy);
       color: #ffffff;
@@ -1267,6 +1387,7 @@
       transform: translateY(-2px);
     }
 
+    /* Direct WhatsApp Action Button */
     .contact-action-btn.btn-wa {
       background: #25d366;
       color: #ffffff;
@@ -1276,6 +1397,7 @@
       transform: translateY(-2px);
     }
 
+    /* Direct Viber Action Button */
     .contact-action-btn.btn-viber {
       background: #7360f2;
       color: #ffffff;
@@ -1285,6 +1407,7 @@
       transform: translateY(-2px);
     }
 
+    /* Trackside Mini-Card: Quick physical address and operating hours badge */
     .location-card-mini {
       background: #f1f5f9;
       border-radius: var(--radius-md);
@@ -1299,13 +1422,14 @@
       margin-bottom: 4px;
     }
 
-    /* Interactive Form */
+    /* Interactive Booking Form Container */
     .booking-form {
       display: flex;
       flex-direction: column;
       gap: 1.15rem;
     }
 
+    /* Form Input Group: Label and input container */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -1318,6 +1442,7 @@
       color: var(--deep-navy);
     }
 
+    /* Form Input / Textarea Control */
     .form-control {
       font-family: inherit;
       font-size: 0.95rem;
@@ -1337,7 +1462,7 @@
       box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
     }
 
-    /* Gear Selector Grid Pills */
+    /* Gear Selection Radio Grid */
     .category-pills {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1352,6 +1477,7 @@
       display: none;
     }
 
+    /* Pill Selection Button Surface */
     .pill-content {
       display: flex;
       align-items: center;
@@ -1366,13 +1492,14 @@
       transition: all 0.2s ease;
     }
 
+    /* Active Checked Radio Pill State */
     .category-pill-label input:checked + .pill-content {
       background: #e0f2fe;
       border-color: var(--glacier-cyan);
       color: var(--alpine-blue);
     }
 
-    /* Counter Control for People */
+    /* People Stepper Controls (+ / -) */
     .counter-group {
       display: flex;
       align-items: center;
@@ -1406,7 +1533,7 @@
       text-align: center;
     }
 
-    /* Live Message Preview */
+    /* Live Message Preview Box: Previews real-time WhatsApp output message */
     .preview-box {
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
@@ -1428,6 +1555,7 @@
       color: #334155;
     }
 
+    /* Form Submit Button: Launches WhatsApp with pre-filled inquiry text */
     .btn-submit-booking {
       background: linear-gradient(135deg, #25d366 0%, #1ea952 100%);
       color: #ffffff;
@@ -1452,6 +1580,8 @@
 
     /* ==========================================================================
        LOCATION / FAQ SECTION
+       Provides geographical directions, opening hours, road maintenance info,
+       Google Maps launch button, and an interactive FAQ accordion.
        ========================================================================== */
     .location-section {
       background: #ffffff;
@@ -1459,6 +1589,7 @@
       border-top: 1px solid #e2e8f0;
     }
 
+    /* 2-Column Container: Location facts on left, FAQ accordion on right */
     .location-container {
       max-width: 1240px;
       margin: 0 auto;
@@ -1479,6 +1610,7 @@
       margin-bottom: 2rem;
     }
 
+    /* Location Metadata List: Address, hours, and road conditions */
     .location-meta-list {
       display: flex;
       flex-direction: column;
@@ -1516,13 +1648,14 @@
       margin: 0;
     }
 
-    /* FAQ Accordion */
+    /* FAQ Accordion List */
     .faq-list {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
+    /* Individual FAQ Item Container */
     .faq-item {
       border: 1px solid #e2e8f0;
       border-radius: var(--radius-md);
@@ -1531,6 +1664,7 @@
       transition: all 0.2s;
     }
 
+    /* Accordion Question Trigger: Displays plus indicator that rotates on open */
     .faq-question {
       padding: 1.1rem 1.25rem;
       font-weight: 700;
@@ -1550,10 +1684,12 @@
       transition: transform 0.2s;
     }
 
+    /* Rotates plus symbol into an 'x' when opened */
     .faq-item.open .faq-question::after {
       transform: rotate(45deg);
     }
 
+    /* Accordion Answer Content: Animates max-height from 0 to expanded */
     .faq-answer {
       max-height: 0;
       overflow: hidden;
@@ -1571,6 +1707,8 @@
 
     /* ==========================================================================
        FOOTER
+       Multi-column dark footer providing branding, navigation links,
+       chalet info, direct contact channels, and dynamic copyright statement.
        ========================================================================== */
     .site-footer {
       background: #060e18;
@@ -1584,6 +1722,7 @@
       margin: 0 auto;
     }
 
+    /* Footer 4-Column Grid (Brand, Gear, Services, Contact) */
     .footer-main-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
@@ -1629,6 +1768,7 @@
       color: #38bdf8;
     }
 
+    /* Sub-Footer Row: Copyright and craftsmanship notice */
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       padding-top: 2rem;
@@ -1643,6 +1783,8 @@
 
     /* ==========================================================================
        MOBILE FLOATING STICKY ACTION BAR
+       Fixed bottom pill bar displayed only on mobile viewports for quick
+       thumb-friendly access to phone calls, WhatsApp chat, and booking.
        ========================================================================== */
     .mobile-bar {
       display: none;
@@ -1673,6 +1815,7 @@
       transition: background 0.2s;
     }
 
+    /* Mobile CTA Highlight: Orange gradient pill for direct reservation */
     .mobile-bar a.mob-cta {
       background: linear-gradient(135deg, var(--sun-orange), #ea580c);
       box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
@@ -1680,14 +1823,18 @@
 
     /* ==========================================================================
        RESPONSIVE DESIGN BREAKPOINTS
+       Adapts navigation, grid layouts, and visual hierarchy for tablets and phones.
        ========================================================================== */
+    /* Tablet & Medium Screens (< 992px) */
     @media (max-width: 992px) {
+      /* Hides desktop navigation bar and reveals hamburger toggle */
       .nav-menu {
         display: none;
       }
       .menu-toggle {
         display: block;
       }
+      /* Mobile dropdown navigation menu drawer */
       .nav-menu.mobile-open {
         display: flex;
         flex-direction: column;
@@ -1701,6 +1848,7 @@
         box-shadow: var(--shadow-lg);
         gap: 1.25rem;
       }
+      /* Collapses 2-column showcase rows into single stacked columns */
       .gear-showcase-row,
       .gear-showcase-row.reversed {
         grid-template-columns: 1fr;
@@ -1723,6 +1871,7 @@
       .btn-wrap {
         justify-content: center;
       }
+      /* Stacks villa card, booking box, location container, and footer into responsive columns */
       .villa-card {
         grid-template-columns: 1fr;
       }
@@ -1737,6 +1886,7 @@
       }
     }
 
+    /* Small Screens & Mobile Smartphones (< 640px) */
     @media (max-width: 640px) {
       .top-links {
         display: none;
@@ -1744,6 +1894,7 @@
       .top-bar-inner {
         justify-content: center;
       }
+      /* Reveals mobile floating sticky action bar at bottom of screen */
       .mobile-bar {
         display: flex;
       }
@@ -1759,6 +1910,7 @@
       .footer-main-grid {
         grid-template-columns: 1fr;
       }
+      /* Hides complex floating badges on small screens for cleaner mobile UI */
       .floating-card-badge {
         display: none;
       }
@@ -1768,11 +1920,11 @@
 
 <body>
 
-  <!-- SNOWFALL PARTICLE CANVAS -->
+  <!-- BACKGROUND VISUAL EFFECTS: High-performance 60 FPS HTML5 canvas particle snowfall & CSS sparkle snowflakes -->
   <canvas id="snowfall" aria-hidden="true"></canvas>
   <div id="snow-sparks" aria-hidden="true"></div>
 
-  <!-- TOP BAR: Live Mountain Status & Quick Contacts -->
+  <!-- ANNOUNCEMENT BAR: Real-time ski piste opening status, altitude, direct phone/WhatsApp links, snow toggle & language switcher -->
   <div class="top-bar">
     <div class="top-bar-inner">
       <div class="status-badge">
@@ -1800,12 +1952,13 @@
     </div>
   </div>
 
-  <!-- STICKY HEADER -->
+  <!-- MAIN NAVIGATION HEADER: Sticky frosted-glass navbar with brand logo, section anchors, booking CTA, and mobile hamburger drawer -->
   <header class="site-nav" id="navbar">
     <div class="nav-container">
+      <!-- Brand Logo Component: Vector mountain badge and business typography linking to top of page -->
       <a href="#" class="brand">
         <div class="brand-mark">
-          <!-- Sleek Mountain Vector Logo -->
+          <!-- Stylized Mountain Peak SVG Icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
             <path d="M4 14l4-3 4 5"/>
@@ -1817,7 +1970,7 @@
         </div>
       </a>
 
-      <!-- Desktop Nav Menu -->
+      <!-- Primary Navigation Links: Semantic nav linking to all key sections on the single page -->
       <nav>
         <ul class="nav-menu" id="navMenu">
           <li><a href="#equipment" data-i18n="nav_equipment">Опрема</a></li>
@@ -1829,12 +1982,13 @@
         </ul>
       </nav>
 
-      <!-- Nav CTA & Toggle -->
+      <!-- Header Action & Mobile Menu Toggle: Booking button and mobile drawer hamburger button -->
       <div class="nav-cta">
         <a href="#contact" class="btn-nav">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span data-i18n="nav_book_btn">Резервирај</span>
         </a>
+        <!-- Hamburger Menu Button: Expands/collapses navigation menu on small screens -->
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
           <span></span>
           <span></span>
@@ -1845,26 +1999,31 @@
   </header>
 
   <main>
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION: Primary value proposition introducing trackside convenience, headlines, CTAs, and 4 trust cards -->
     <section class="hero-section">
+      <!-- Decorative Backdrop Artwork & Ambient Radial Sunrise Glow -->
       <div class="hero-backdrop"></div>
       <div class="hero-glow"></div>
       <div class="hero-container">
         
+        <!-- Location Value Badge -->
         <div class="hero-pill">
           <span>🏔️</span>
           <span data-i18n="hero_pill">Опрема директно на скијачката патека Пониква</span>
         </div>
 
+        <!-- Main Fluid Heading -->
         <h2 class="hero-title">
           <span data-i18n="hero_title_1">Вашата незаборавна</span><br>
           <span class="gradient-text" data-i18n="hero_title_2">зимска авантура</span>
         </h2>
 
+        <!-- Descriptive Subtitle -->
         <p class="hero-subtitle" data-i18n="hero_desc">
           Врвна ски и сноуборд опрема, дезинфицирана и прецизно прилагодена на вашата висина и број. Без носење тежок багаж — земете ја опремата веднаш на стартот на патеката!
         </p>
 
+        <!-- Primary & Secondary Conversion CTA Buttons -->
         <div class="hero-cta-group">
           <a href="#contact" class="btn-primary">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1876,7 +2035,7 @@
           </a>
         </div>
 
-        <!-- 4 Hero Highlights -->
+        <!-- Four Key Service Highlight Cards: Trackside location, fast 5-min fitting, heated boot dryers, and all ages -->
         <div class="hero-highlights">
           <div class="highlight-card">
             <div class="highlight-icon">📍</div>
@@ -1911,7 +2070,7 @@
       </div>
     </section>
 
-    <!-- SLOPE STREAM: SHOWCASE SECTIONS -->
+    <!-- EQUIPMENT SHOWCASE STREAM: Interactive product rows for Skis, Snowboards, and Sledges/Kids -->
     <div class="slope-stream" id="equipment">
       <div class="stream-container">
 
@@ -1920,7 +2079,7 @@
           <h2 class="section-main-title" data-i18n="sec_main_title">Подготвени за Секој Снежен Спуст</h2>
         </div>
 
-        <!-- 1. SKI EQUIPMENT ROW -->
+        <!-- 1. SKI EQUIPMENT SHOWCASE ROW: Professional carving & all-mountain ski sets -->
         <div class="gear-showcase-row">
           <div class="gear-visual">
             <div class="image-stage-backdrop"></div>
@@ -1965,7 +2124,7 @@
           </div>
         </div>
 
-        <!-- 2. SNOWBOARD EQUIPMENT ROW (REVERSED) -->
+        <!-- 2. SNOWBOARD EQUIPMENT SHOWCASE ROW: Freeride/All-Mountain snowboards and soft boots (Reversed Layout) -->
         <div class="gear-showcase-row reversed">
           <div class="gear-visual">
             <div class="image-stage-backdrop"></div>
@@ -2010,7 +2169,7 @@
           </div>
         </div>
 
-        <!-- 3. KIDS & FAMILY SLEDGES ROW -->
+        <!-- 3. KIDS & FAMILY SLEDGES SHOWCASE ROW: Sledges, kids' skis, warm winter suits (Centered Layout) -->
         <div class="gear-showcase-row centered-layout">
           <div class="gear-content">
             <div class="gear-tag" data-i18n="kids_tag">За Семејства & Најмладите</div>
@@ -2045,7 +2204,7 @@
       </div>
     </div>
 
-    <!-- WHY US: ADVANTAGES SECTION -->
+    <!-- WHY US / ADVANTAGES SECTION: 4 core pillars (trackside proximity, ISO DIN binding calibration, ozone heated boot drying, mountain chalet package) -->
     <section class="features-section" id="advantages">
       <div class="features-container">
         <div class="section-header-badge">
@@ -2081,7 +2240,7 @@
       </div>
     </section>
 
-    <!-- TRANSPARENT PRICING GUIDE -->
+    <!-- TRANSPARENT PRICING GUIDE: 3 daily rental packages with itemized inclusions and pre-selecting booking buttons -->
     <section class="pricing-section" id="pricing">
       <div class="pricing-container">
         <div class="section-header-badge">
@@ -2184,7 +2343,7 @@
       </div>
     </section>
 
-    <!-- VILLA NADJA PONIKVA SECTION -->
+    <!-- VILLA NADJA CHALET SECTION: Highlighting authentic mountain chalet accommodation, capacity, fireplace, and slope proximity -->
     <section class="villa-section" id="villa">
       <div class="villa-backdrop-glow"></div>
       <div class="villa-container">
@@ -2235,7 +2394,7 @@
       </div>
     </section>
 
-    <!-- INTERACTIVE BOOKING / CONCIERGE CONSOLE -->
+    <!-- INTERACTIVE BOOKING CONCIERGE: Direct phone/WhatsApp/Viber links + smart interactive form generating instant WhatsApp inquiries -->
     <section class="booking-section" id="contact">
       <div class="booking-container">
         <div class="booking-box">
@@ -2345,7 +2504,7 @@
       </div>
     </section>
 
-    <!-- LOCATION & FAQ SECTION -->
+    <!-- LOCATION & FREQUENTLY ASKED QUESTIONS SECTION: Mountain coordinates, opening hours, access road status, and interactive accordion FAQ -->
     <section class="location-section" id="location">
       <div class="location-container">
 
@@ -2421,7 +2580,7 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER: Brand summary, navigation sitemap, services links, direct contacts, and copyright -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-main-grid">
@@ -2482,7 +2641,7 @@
     </div>
   </footer>
 
-  <!-- MOBILE BOTTOM STICKY ACTION BAR -->
+  <!-- MOBILE BOTTOM STICKY ACTION BAR: Thumb-friendly floating action bar for instant call, WhatsApp, and reservation on smartphones -->
   <div class="mobile-bar">
     <a href="tel:+38970000000" id="mob-call">
       <span>📞</span> <span data-i18n="mob_call">Повик</span>
@@ -2497,30 +2656,46 @@
 
   <!-- ==========================================================================
        SCRIPTS: CONSOLE, SNOWFALL, BILINGUAL TRANSLATIONS & CONTACT BEHAVIOR
+       Manages client-side interaction, bilingual i18n localization, dynamic URL
+       linking, people counters, WhatsApp message composition, and 60 FPS canvas snowfall.
        ========================================================================== -->
   <script>
-    // Configurable Phone Number (digits only with country code)
+    /**
+     * Business Contact Configuration:
+     * Standard international phone format without '+' or special symbols.
+     * Used for all tel:, WhatsApp wa.me, and Viber chat URLs throughout the app.
+     */
     var PHONE = "38970000000";
 
-    // Set Copyright Year
+    /**
+     * Dynamic Copyright Year:
+     * Automatically keeps the footer copyright year updated with current year.
+     */
     document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-    // Wire Phone Links
+    /**
+     * Wire Phone Links Function:
+     * @param {string} number - The sanitized telephone number digits.
+     * Injects formatted telephone, WhatsApp, and Viber hyperlinks into all matching anchor tags.
+     */
     function setupPhoneLinks(number) {
       const telHref = "tel:+" + number;
       const waHref = "https://wa.me/" + number;
       const viberHref = "viber://chat?number=%2B" + number;
 
+      // Assign click-to-call telephone URLs to phone anchor elements
       ["top-phone", "call-main", "foot-phone", "mob-call"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.href = telHref;
       });
 
+      // Assign WhatsApp chat URLs to WhatsApp action links
       ["top-wa", "wa-main", "foot-wa", "mob-wa"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.href = waHref;
       });
 
+      // Assign Viber protocol URLs to Viber action links
       ["viber-main", "foot-viber"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.href = viberHref;
@@ -2528,7 +2703,11 @@
     }
     setupPhoneLinks(PHONE);
 
-    // Mobile Navbar Toggle
+    /**
+     * Mobile Navigation Drawer Toggle:
+     * Listens for clicks on hamburger button to expand/collapse mobile navigation drawer.
+     * Automatically closes drawer when any navigation link is clicked.
+     */
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
     menuToggle.addEventListener("click", () => {
@@ -2538,7 +2717,11 @@
       link.addEventListener("click", () => navMenu.classList.remove("mobile-open"));
     });
 
-    // Header shadow on scroll
+    /**
+     * Header Scroll Elevation:
+     * Toggles the '.scrolled' CSS class on the sticky header when the user scrolls past 30px,
+     * adding a deeper shadow and higher backdrop opacity for improved legibility.
+     */
     window.addEventListener("scroll", () => {
       const navbar = document.getElementById("navbar");
       if (window.scrollY > 30) {
@@ -2548,7 +2731,11 @@
       }
     }, { passive: true });
 
-    // FAQ Accordion
+    /**
+     * FAQ Accordion Handler:
+     * Toggles the '.open' class on the clicked accordion item to reveal/hide the answer,
+     * with smooth height transition and rotating plus indicator.
+     */
     document.querySelectorAll(".faq-question").forEach(q => {
       q.addEventListener("click", () => {
         const item = q.parentElement;
@@ -2556,7 +2743,11 @@
       });
     });
 
-    // People Counter
+    /**
+     * People Counter Controller:
+     * State and event listeners for incrementing (+) and decrementing (-) party size,
+     * constrained between 1 and 25 guests, updating the live WhatsApp message preview in real time.
+     */
     let count = 2;
     const peopleCountEl = document.getElementById("peopleCount");
     document.getElementById("btnMinus").addEventListener("click", () => {
@@ -2566,7 +2757,11 @@
       if (count < 25) { count++; peopleCountEl.textContent = count; updateLivePreview(); }
     });
 
-    // Quick Gear Selection Buttons across page
+    /**
+     * Quick Gear Package Selection Buttons:
+     * Handles clicks on 'Select Package' buttons across the page, pre-checking
+     * the matching radio input in the booking form and refreshing the live preview.
+     */
     document.querySelectorAll(".select-gear-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const gear = btn.getAttribute("data-gear");
@@ -2578,13 +2773,21 @@
       });
     });
 
-    // Today's date by default
+    /**
+     * Date Picker Initialization:
+     * Sets default arrival date to today's date and sets minimum selectable date to today
+     * to prevent selecting past dates.
+     */
     const today = new Date().toISOString().split('T')[0];
     const bookDateInput = document.getElementById("bookDate");
     bookDateInput.value = today;
     bookDateInput.min = today;
 
-    // Bilingual Dictionary (Macedonian & English)
+    /**
+     * Bilingual Translation Dictionary (Macedonian & English):
+     * Key-value mappings for all text elements decorated with [data-i18n].
+     * Supports instant client-side language switching without page reload.
+     */
     let currentLang = 'mk';
     const i18nData = {
       mk: {
@@ -2893,6 +3096,12 @@
       }
     };
 
+    /**
+     * Apply Translations Function:
+     * @param {'mk'|'en'} lang - Language code to activate.
+     * Iterates through all DOM nodes with [data-i18n] attributes and updates their text,
+     * toggles active styling on the MK/EN toggle buttons, and updates the live message preview.
+     */
     function applyTranslations(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -2908,19 +3117,33 @@
       updateLivePreview();
     }
 
+    // Attach click listeners to language toggle buttons
     document.getElementById("btn-mk").addEventListener("click", () => applyTranslations('mk'));
     document.getElementById("btn-en").addEventListener("click", () => applyTranslations('en'));
 
-    // Live WhatsApp Message Preview & Sync
+    /**
+     * Live WhatsApp Message Generator & Input Synchronizer:
+     * Gathers customer form entries in real time and renders a clean pre-formatted preview.
+     */
     const nameInput = document.getElementById("userName");
     const msgInput = document.getElementById("userMsg");
     const previewEl = document.getElementById("liveMsgPreview");
 
+    /**
+     * Get Selected Topic Helper:
+     * Reads current checked radio button value for equipment category.
+     * @returns {string} Selected equipment topic string.
+     */
     function getSelectedTopic() {
       const checked = document.querySelector('input[name="topic"]:checked');
       return checked ? checked.value : "Ski equipment";
     }
 
+    /**
+     * Compose WhatsApp Message:
+     * Formats customer inputs into a polite, structured multi-line inquiry in the current language.
+     * @returns {string} Formatted text message ready for URL encoding.
+     */
     function composeWhatsAppMessage() {
       const name = nameInput.value.trim() || (currentLang === 'mk' ? "[Вашето Име]" : "[Your Name]");
       const topic = getSelectedTopic();
@@ -2943,17 +3166,26 @@
       }
     }
 
+    /**
+     * Update Live Preview:
+     * Renders composed WhatsApp message text into the monospace preview container.
+     */
     function updateLivePreview() {
       previewEl.textContent = composeWhatsAppMessage();
     }
 
+    // Attach real-time input event listeners to sync preview immediately on any change
     nameInput.addEventListener("input", updateLivePreview);
     msgInput.addEventListener("input", updateLivePreview);
     bookDateInput.addEventListener("change", updateLivePreview);
     document.querySelectorAll('input[name="topic"]').forEach(r => r.addEventListener("change", updateLivePreview));
     updateLivePreview();
 
-    // Form Submission: opens WhatsApp in new window
+    /**
+     * Booking Form Submission Handler:
+     * Prevents standard HTTP submission, serializes the composed message with encodeURIComponent,
+     * and opens direct WhatsApp chat with the ski rental concierge in a new tab.
+     */
     document.getElementById("inquiryForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const text = composeWhatsAppMessage();
@@ -2961,7 +3193,9 @@
     });
 
     /* ==========================================================================
-       OPTIMIZED HIGH-PERFORMANCE SNOWFALL (60 FPS CANVAS)
+       OPTIMIZED HIGH-PERFORMANCE SNOWFALL (60 FPS CANVAS PARTICLE ENGINE)
+       Self-contained module rendering smooth snow particles with pre-rendered offscreen
+       sprites, delta-time physics, sinusoidal swaying, twinkle, and retina display support.
        ========================================================================== */
     let snowActive = true;
     (function () {
@@ -2973,6 +3207,12 @@
 
       let W = 0, H = 0, flakes = [], raf = null, last = performance.now(), t = 0, rzTimer;
 
+      /**
+       * Offscreen Glow Sprite Generator:
+       * Pre-renders a soft radial glow particle onto a 48x48 offscreen canvas.
+       * Eliminates costly real-time radial gradient computation on every animation frame.
+       * @returns {HTMLCanvasElement} Cached offscreen canvas sprite.
+       */
       function glowSprite() {
         const c = document.createElement('canvas'); c.width = c.height = 48;
         const g = c.getContext('2d');
@@ -2985,6 +3225,11 @@
         return c;
       }
 
+      /**
+       * Offscreen Star Sparkle Sprite Generator:
+       * Pre-renders a 4-pointed glowing sparkle snowflake onto a 48x48 offscreen canvas.
+       * @returns {HTMLCanvasElement} Cached star sprite.
+       */
       function starSprite() {
         const c = document.createElement('canvas'); c.width = c.height = 48;
         const g = c.getContext('2d');
@@ -2998,26 +3243,39 @@
         return c;
       }
 
+      // Sprite cache array: index 0 = soft circular glow flake, index 1 = star sparkle flake
       const SPRITES = [glowSprite(), starSprite()];
+      
+      /** Random range helper: returns a random float between a and b */
       const rand = (a, b) => a + Math.random() * (b - a);
 
+      /**
+       * Snowflake Particle Factory:
+       * @param {boolean} fromTop - True if spawning new flake above screen viewport; false for initial distribution.
+       * @returns {object} Particle state object containing position, speed, drift, sway, phase, and twinkle attributes.
+       */
       function makeFlake(fromTop) {
         const star = Math.random() < 0.12;
         return {
           x: rand(0, W),
           y: fromTop ? rand(-40, -10) : rand(0, H),
           r: star ? rand(1.6, 2.6) : rand(0.8, 2.2),
-          v: rand(15, 45),
-          drift: rand(-6, 6),
-          swayA: rand(8, 24),
-          swayF: rand(0.15, 0.45),
-          ph: rand(0, Math.PI * 2),
-          tw: rand(0.6, 2.2),
-          o: star ? rand(.55, .95) : rand(.3, .8),
-          sp: star ? 1 : 0
+          v: rand(15, 45), // Vertical falling velocity
+          drift: rand(-6, 6), // Constant wind drift velocity
+          swayA: rand(8, 24), // Sway oscillation amplitude
+          swayF: rand(0.15, 0.45), // Sway oscillation frequency
+          ph: rand(0, Math.PI * 2), // Random initial phase angle
+          tw: rand(0.6, 2.2), // Twinkle cycle frequency
+          o: star ? rand(.55, .95) : rand(.3, .8), // Base opacity
+          sp: star ? 1 : 0 // Selected sprite index
         };
       }
 
+      /**
+       * Canvas Resize Handler:
+       * Matches canvas backing resolution to device pixel ratio (up to 2x for Retina screens)
+       * avoiding blurry rendering while maintaining high performance.
+       */
       function resize() {
         const DPR = Math.min(window.devicePixelRatio || 1, 2);
         W = window.innerWidth; H = window.innerHeight;
@@ -3025,21 +3283,35 @@
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       }
 
+      /**
+       * Populate Particle Array:
+       * Scales total particle count proportionally to viewport surface area (capped at 140 for 60 FPS).
+       */
       function populate() {
         const n = Math.min(140, Math.round(W * H / 12000));
         flakes = Array.from({ length: n }, () => makeFlake(false));
       }
 
+      /**
+       * Main Animation Frame Loop:
+       * Calculates frame delta-time (dt), updates particle physics, recycles flakes that leave
+       * the bottom screen boundary, and draws sprites with opacity twinkle modulation.
+       * @param {number} now - High-resolution timestamp from requestAnimationFrame.
+       */
       function frame(now) {
         if (!snowActive) return;
         const dt = Math.min((now - last) / 1000, .05); last = now; t += dt;
         ctx.clearRect(0, 0, W, H);
         for (let i = 0; i < flakes.length; i++) {
           const f = flakes[i];
+          // Update vertical and horizontal sinusoidal sway movement
           f.y += f.v * dt;
           f.x += (f.drift + Math.sin(t * f.swayF * 6.283 + f.ph) * f.swayA * .5) * dt;
+          // Recycle flake to the top if it falls beyond the bottom boundary
           if (f.y > H + 30) { flakes[i] = makeFlake(true); continue; }
+          // Wrap flakes around horizontal edges
           if (f.x < -40) f.x = W + 40; else if (f.x > W + 40) f.x = -40;
+          // Calculate twinkle factor and render pre-rendered sprite
           const twinkle = .65 + .35 * Math.sin(t * f.tw * 6.283 + f.ph);
           const size = f.r * 5;
           ctx.globalAlpha = Math.min(1, f.o * twinkle);
@@ -3049,20 +3321,28 @@
         raf = requestAnimationFrame(frame);
       }
 
+      /** Start Animation Loop */
       function start() { if (!raf && snowActive) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+      /** Stop Animation Loop */
       function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
+      // Window Resize Listener with debounce delay
       window.addEventListener('resize', () => {
         clearTimeout(rzTimer);
         rzTimer = setTimeout(() => { resize(); populate(); }, 150);
       }, { passive: true });
 
+      // Page Visibility Change Listener: Pauses canvas rendering when tab is hidden to save CPU/battery
       document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
       mql.addEventListener?.('change', e => e.matches ? stop() : start());
 
+      // Initialize dimensions, populate particles, and start render loop
       resize(); populate(); start();
 
-      // Snow Toggle Button in Top Bar
+      /**
+       * Snow Toggle Button Handler:
+       * Allows the user to toggle both the canvas particle simulation and DOM spark layer on or off.
+       */
       const snowBtn = document.getElementById("toggleSnow");
       const snowStatusText = document.getElementById("snowStatusText");
       if (snowBtn) {
@@ -3077,11 +3357,16 @@
       }
     })();
 
-    /* ---------------- CSS Layer: Magical Sparkle Snowflakes ---------------- */
+    /* ==========================================================================
+       CSS LAYER: MAGICAL SPARKLE SNOWFLAKES (DOM PARTICLES)
+       Injects a lightweight set of stylized snowflake characters ('❄', '❅', '❆')
+       with randomized animation durations, delay, drift, and sway custom properties.
+       ========================================================================== */
     (function () {
       const holder = document.getElementById('snow-sparks');
       if (!holder || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const CHARS = ['❄', '❅', '❆'];
+      // Spawn fewer sparks on mobile devices for optimal performance
       const N = window.innerWidth < 640 ? 5 : 8;
       for (let i = 0; i < N; i++) {
         const s = document.createElement('span'); s.className = 'spark';
